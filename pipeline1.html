@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="static/js/prism.js"></script>
+  <link href="static/css/prism.css" rel="stylesheet" />
+
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Ben Davis DevOps Projects</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Butterfly
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/butterfly-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <a href="index.html" class="logo"><img src="static/img/Ben Logo wide.png" alt="" class="img-fluid"></a>
+    <!-- Uncomment below if you prefer to use text as a logo -->
+    <!-- <h1 class="logo"><a href="index.html">Butterfly</a></h1> -->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto " href="index.html">Home</a></li>
+        <li><a class="nav-link scrollto active" href="pipeline1.html">1. Automated Infrastructure Blueprint</a></li>
+        <li><a class="nav-link scrollto" href="pipeline2.html">2. CI/CD Container Deployment</a></li>
+        <li><a class="nav-link scrollto" href="pipeline3.html">3. Serverless Datafeed</a></li>
+        <li><a class="nav-link scrollto" href="https://www.linkedin.com/in/benjamin-davis-awssaa-dc/" target="_blank">Contact</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>Automated Infrastructure Blueprint</h1>
+          <h2>AWS is the backbone of my site, responsible for the Instances and security protocols that allow everything to run. Look below to see how I built my servers.</h2>
+          
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="static/img/codedeploy.png" class="img-fluid border" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+<!-- ======= About Section 1 ======= -->
+<section id="about" class="about">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 d-flex justify-content-center align-items-stretch position-relative order-lg-1 order-xl-1 order-2">
+      <div class="code-container">
+        <div class="code-banner">X-Ray - HCL</div>
+        <pre>
+          <code class="language-hcl">
+provider "aws" {
+  region = "us-east-1"
+}
+terraform {
+  backend "s3" {
+    bucket = "terraformstateprotag"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    #    dynamodb_table = "protag_state_locking"
+  }
+}
+
+resource "aws_dynamodb_table" "github_files" {
+  name           = "x-ray_table"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+  attribute {
+    name = "file_path"
+    type = "S"
+  }
+
+  attribute {
+    name = "file_content"
+    type = "S"
+  }
+
+  key_schema {
+    attribute_name = "file_path"
+    key_type       = "HASH"
+  }
+
+  key_schema {
+    attribute_name = "file_content"
+    key_type       = "RANGE"
+  }
+}
+
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "my-vpc"
+  cidr = "10.0.0.0/16"
+
+  azs                     = ["us-east-1a", "us-east-1b"]
+  public_subnets          = ["10.0.1.0/24"]
+  map_public_ip_on_launch = true
+  private_subnets         = ["10.0.2.0/24"]
+}
+
+resource "aws_instance" "public_instance" {
+  ami           = var.ami_id
+  instance_type = var.public_instance_type
+
+  user_data = <<-EOF
+    #!/bin/bash
+    curl -sSfL -o bootstrap.sh bootstrap.sh
+    chmod +x bootstrap.sh
+    ./bootstrap.sh
+  EOF
+
+  user_data_replace_on_change = true
+
+  subnet_id              = module.vpc.public_subnets[0]
+  key_name               = aws_key_pair.protag2-key.id
+  vpc_security_group_ids = [aws_security_group.public_sg.id, 
+                            aws_security_group.public_sg2.id, 
+                            aws_security_group.public_sg3.id]
+
+  tags = {
+    Name = "Public Instance"
+  }
+}</code>
+        </pre><p> This code is live from my AWS CodeCommit Repo.</p>
+      </div>  
+      
+      </div>
+
+      <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-6 px-lg-6 order-lg-2 order-xl-2 order-1">
+        <h3>Main.tf - How I built my Server and Database</h3>
+
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-paint-roll"></i></div>
+          <h4 class="title"><a href="">Infrastructure as Code</a></h4>
+          <p class="description">Terraform allows me to keep track of all the infrastructure I have provisioned, and lets me destroy, move, or duplicate the project whenver necessary.</p>
+        </div>
+
+        <p>The first step is to build an instance and set up the basic infrastructure.</p>
+        <p>This file contains the region and VPC info for my entire project,</p>
+        <p>a database which will be used for the full-stack X-Ray app's code in part 3,</p>
+        <p>and the server runs my bootstrap script which will configure the servers in part 2.</p>
+
+      </div>
+    </div>
+
+  </div>
+</section><!-- End About Section -->
+
+<!-- ======= About Section 2 ======= -->
+<section id="blue" class="about">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+        <h3>SG.tf - Builds my security groups and SSH Keys</h3>
+
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-key"></i></div>
+          <h4 class="title"><a href="">Authorized Access Only</a></h4>
+          <p class="description">When working with multiple servers, we can specify security rules for each one.</p>
+        </div>
+        <p>Next I built in the security settings to give the server access to the internet.</p>
+        <p>AWS also manages my SSH keys, which allow me to remotely troubleshoot my servers if there's a problem with the bootstrap script.</p>
+
+          
+      </div>
+
+      <div class="col-xl-6 col-lg-6 d-flex justify-content-center align-items-stretch position-relative">
+        <div class="code-container">
+          <div class="code-banner">X-Ray - HCL</div>
+          <pre>
+            <code class="language-hcl">
+resource "aws_security_group" "public_sg" {
+  name        = "public_sg1"
+  description = "Allow web traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_tcp"
+  }
+}
+
+resource "aws_security_group" "public_sg2" {
+  name        = "public_sg2"
+  description = "Allow ssh traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+
+
+       description      = "SSH"
+       from_port        = 22
+       to_port          = 22
+       protocol         = "tcp"
+       cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_ssh"
+  }
+}
+
+resource "aws_security_group" "public_sg3" {
+  name        = "public_sg3"
+  description = "Allow http traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+
+
+       description      = "HTTP"
+       from_port        = 80
+       to_port          = 80
+       protocol         = "tcp"
+       cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_httpd"
+  }
+}
+
+#private sg
+
+resource "aws_security_group" "private_sg" {
+  name        = "private_sg1"
+  description = "Allow TLS traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+    description = "TLs from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
+resource "aws_key_pair" "protag2-key" {
+  key_name   = "protag2-key"
+  public_key = file("protag2-key.pub")
+}
+            </code>
+          </pre><p> This code is live from my AWS CodeCommit Repo.</p>
+        </div>  
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End About Section -->
+
+<!-- ======= About Section 3 ======= -->
+<section id="about" class="about">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 d-flex justify-content-center align-items-stretch position-relative order-lg-1 order-xl-1 order-2">
+      <div class="code-container">
+        <div class="code-banner">X-Ray - HCL</div>
+        <pre>
+          <code class="language-hcl">
+# Bucket
+resource "aws_s3_bucket" "lambda_bucket_pipeline2" {
+  bucket = "lambda-bucketpipeline2bd"
+
+  force_destroy = true
+}
+
+#bucket code uploader
+resource "aws_s3_object" "lambda_code" {
+  bucket = aws_s3_bucket.lambda_bucket_pipeline2.id
+  key    = "xray.zip"
+  source = "${path.module}/venv/xray.zip"
+}
+
+# Lambda Artifact
+data "archive_file" "xray-lambda" {
+  type = "zip"
+
+  source_dir  = "${path.module}/xray"
+  output_path = "${path.module}/xray.zip"
+}
+
+resource "aws_s3_object" "lambda-xray" {
+  bucket = aws_s3_bucket.lambda_bucket_pipeline2.id
+
+  key    = "xray.zip"
+  source = data.archive_file.xray-lambda.output_path
+
+  etag = filemd5(data.archive_file.xray-lambda.output_path)
+}
+
+data "aws_s3_bucket_object" "layer_zip" {
+  bucket = "lambda-bucketpipeline2bd"
+  key    = "site-packages-downgrade.zip"
+}
+
+# Create the Lambda layer
+resource "aws_lambda_layer_version" "my_layer" {
+  layer_name = "Site-package-downgrade"
+  compatible_runtimes = ["python3.9"]
+}
+
+# Lambda Function
+resource "aws_lambda_function" "xray" {
+  function_name = "xray-lambda"
+
+  s3_bucket = aws_s3_bucket.lambda_bucket_pipeline2.id
+  s3_key    = aws_s3_object.lambda-xray.key
+
+  layers = [ aws_lambda_layer_version.my_layer.arn ]
+
+  runtime = "python3.10"
+  handler = "jenkinsf_scraper.py.lambda_handler"
+  timeout = 15
+
+  event_source_mapping {
+    event_source_arn = "arn:aws:codecommit:us-east-1:<AWS>:Pipeline2"
+    batch_size       = 10
+
+  source_code_hash = data.arcdive_file.xray-lambda.output_base64sha256
+
+  role = aws_iam_role.lambda-xray.arn
+
+  vpc_config {
+    subnet_ids         = module.vpc.public_subnets
+    security_group_ids = [aws_security_group.xray_lambda.id]
+  }
+}
+
+# Lambda Function SG
+resource "aws_security_group" "xray_lambda" {
+  name        = "Xray Lambda"
+  description = "Allow internet access"
+  vpc_id      = module.vpc.vpc_id
+
+
+  ingress {
+    description      = "HTTP access"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["10.0.0.0/16"]
+  }
+
+egress {
+  from_port        = 443
+  to_port          = 443
+  protocol         = "tcp"
+  cidr_blocks      = ["0.0.0.0/0"]
+  ipv6_cidr_blocks = ["::/0"]
+}
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+  tags = {
+    Name = "xray-lambda"
+  }
+}
+
+
+# IAM Role
+resource "aws_iam_role" "lambda-xray" {
+  name = "xray_lambda"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Sid    = ""
+      Principal = {
+        Service = "lambda.amazonaws.com"
+      }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "xray_lambda_execute" {
+  role       = aws_iam_role.lambda-xray.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/
+                AWSLambdaBasicExecutionRole"
+}
+
+# Lambda policy
+resource "aws_iam_policy" "xray-lambda" {
+  name        = "xray-lambda"
+  description = "Xray lambda"
+
+  policy = &lt;&lt;EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeVpcs",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "xray-lambda" {
+  role       = aws_iam_role.lambda-xray.name
+  policy_arn = aws_iam_policy.xray-lambda.arn
+}</code>
+        </pre><p> This code is live from my AWS CodeCommit Repo.</p>
+      </div>  
+      
+      </div>
+
+      <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-6 px-lg-6 order-lg-2 order-xl-2 order-1">
+        <h3>Lambda.tf - Builds my Lambda function</h3>
+
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-paint-roll"></i></div>
+          <h4 class="title"><a href="">Event Driven Architecture</a></h4>
+          <p class="description">Every time my source code is updated, Lambda will update my database.</p>
+        </div>
+        <p>The next step is to build the serverless resources needed.</p>
+        <p>This program is a combination of AWS resources, and Python scripting. AWS creates the resources (the Lambda function and all of its dependencies) and Python tells it what to do.</p>
+        <p>The lambda function is the first half of the X-Ray app. It will scrape my repositories and store the data in the database made in Main.tf.</p>
+        <p>It's essential that the function be given access to the internet so that it can scrape the data it needs.</p>
+        <p>And Lambda must have the necessary permissions to write to the database so that it can store my data for retreival.</p>
+      
+      </div>
+    </div>
+
+  </div>
+</section><!-- End About 3 Section -->
+
+
+<!-- ======= About Section 4 ======= -->
+<section id="blue" class="about">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+        <h3>buildspec.yml - Automated Deployment Script</h3>
+
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4 class="title"><a href="">Automated Infrastructure Pipeline</a></h4>
+          <p class="description">The script gives instructions to the AWS deployment server to build the Terraform configuration.</p>
+        </div>
+        <p>Once the Terraform files have been uploaded to AWS, we need to configure how it will build our servers.</p>
+        <p>AWS CodeCommit sends the code to AWS CodeBuild which deploys the buildspec script and creates the resources from our .tf files.</p>
+
+        <div><a href="pipeline2.html" class="btn-get-started scrollto">See Phase 2</a></div>
+
+          
+      </div>
+
+      <div class="col-xl-6 col-lg-6 d-flex justify-content-center align-items-stretch position-relative">
+        <div class="code-container">
+          <div class="code-banner">X-Ray - YAML</div>
+          <pre>
+            <code class="language-yaml">
+version: 1.0
+phases:
+  install:
+    runtime-versions:
+      terraform: 0.15.x
+    commands:
+      - echo Installing Terraform
+      - curl -o terraform.zip https://releases.hashicorp.com/
+      terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
+      - unzip terraform.zip
+      - chmod +x terraform
+      - mv terraform /usr/local/bin/
+  build:
+    commands:
+      - echo Running Terraform commands
+      - terraform init
+      - terraform apply -auto-approve
+  post_build:
+    commands:
+      - echo Completed Terraform build</code>
+          </pre><p> This code is live from my AWS CodeCommit Repo.</p>
+        </div>  
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End About Section 4-->
+
+
+  <main id="main">
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h4>Find me on Linkedin</h4>
+            <p>I am always excited about new opportunities in the Austin area.</p>
+            <div><a href="https://www.linkedin.com/in/benjamin-davis-awssaa-dc/" class="btn-get-started scrollto">LinkedIn</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Benjamin Davis</h3>
+            <p>
+              Cloud Engineer <br>
+              Austin, Tx<br>
+              <br>
+              <strong>Phone:</strong> (972) 310 8939<br>
+              <strong>Email:</strong> <a href="mailto:benjamin.davs.dc@gmail.com">benjamin.davs.dc@gmail.com</a><br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.linkedin.com/in/benjamin-davis-awssaa-dc/">Linkedin</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://github.com/benjamindavisdc">Github</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>My Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cloud Infrastructure</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">System Administration</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Python Automation</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Healthcare Industry Experience</h4>
+            <p>I have treated over 30,000 patients as a primary healthcare provider and have deep expertise in all aspects of healthcare administration.</p>
+            <p>I hope to one day develop the knowlege and skills to create a variety of tools to help doctors and patients acheive better results in less time.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Butterfly</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/butterfly-free-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/js/main.js"></script>
+
+</body>
+
+</html>
