@@ -21,27 +21,7 @@
   }
 
 
-    /**
-   * CODE SNIPPET BEN
-   */
 
-  const codeSnippet = document.querySelector('code');
-
-codeSnippet.addEventListener('click', () => {
-  navigator.clipboard.writeText(codeSnippet.textContent)
-    .then(() => {
-      alert('Code copied to clipboard!');
-    })
-    .catch((error) => {
-      console.error('Failed to copy code to clipboard:', error);
-    });
-});
-
-
-
-  /**
-   * Easy event listener function
-   */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all)
     if (selectEl) {
