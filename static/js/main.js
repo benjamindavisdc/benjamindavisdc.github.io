@@ -19,9 +19,6 @@
       return document.querySelector(el)
     }
   }
-
-
-
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all)
     if (selectEl) {
