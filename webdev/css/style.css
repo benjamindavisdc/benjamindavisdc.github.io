@@ -1,0 +1,109 @@
+/* styles.css */
+
+/* Apply a black background and white text to the entire page */
+header {
+    padding: 30px;
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin: 0; /* Remove default margin */
+    font-family: system-ui, sans-serif; /* Set a generic font */
+}
+
+/* Optional: Center align text in headings */
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+/* Optional: Style links */
+a {
+    color: lightblue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.zero_class {
+    background-color: #000000;
+    text-align: left;
+    padding: 30px;
+    }
+
+.first_class {
+    background-color: #1f1f1f;
+    text-align: left;
+    padding: 30px;
+    }
+
+.second_class {
+    background-color: #000000;
+    text-align: right;
+    padding: 30px;
+    font-weight: bold;
+    }
+
+.third_class {
+    background-color: #ccffcc;
+    color: #1b1b1b;
+    text-align: center;
+    padding: 30px;
+    font-size:large;
+    }
+
+.custom-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+
+
+.red-style {
+    background-color: #a70000b0;
+    color: #ffffff;
+    font-weight: bold;
+    border: 1px solid;
+}
+/* The game window */
+.output {
+    background-color: #141414;
+    border: 1px solid;
+    border-color: rgb(99, 99, 99);
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* Make the title look fun! */
+.output::first-line {
+    color: crimson;
+    font-size: 1.5em;
+}
+
+.last-line {
+    color: goldenrod;
+}
+
+
+form {
+    padding-top:-30px;
+    padding-bottom: -30px;
+}
+
+
+.container-grid3x3 {
+    display:grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 1fr 500px 1fr;
+    row-gap: 30px;
+}
+
+.container-grid4x1 {
+    display:grid;
+    grid-template-columns: 1fr 5fr 5fr 1fr;
+    grid-template-rows: auto;
+    line-height: 2em;
+}

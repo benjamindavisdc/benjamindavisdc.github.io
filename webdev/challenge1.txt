@@ -1,0 +1,9 @@
+Challenge Number One:
+
+
+The first use of JS I employed was filling a div with dynamic text from a local file.
+For my whiteboarding I had intended to simply 1. fetch the text and extract the body, 2. set the text to a variable, then 3. assign the text to output in a cell. But that resulted in a blank page.
+The AI told me that this type of process actually needs to be done asynchronously. So I had to do my first THEN function (fetch text and extract body, take the response stream and convert it into readable text, then set it as a variable which is outputted by the cell with the appropraite id)
+
+> Lessons Learned
+That helped make me aware of some of the downsides of dynamic sites. They have greatly increased functionality, but this also increases the complexity of managing the UI when doing seemingly easy things like displaying text.

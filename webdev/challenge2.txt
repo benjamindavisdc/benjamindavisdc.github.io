@@ -1,0 +1,8 @@
+Challenge #2
+Once I had the adventure in a big text box, I realized it just didn't look right. When loading in a recent game, I didn't want to be scrolled up to the top of my recent adventure. I wanted to see the screen I am used to: scrolled down to the bottom where my most recent actions have taken place, and where the prompt input window is. So I shrunk the text box and tried to make it to where I loaded into the page AT THE BOTTOM of the text box. This ended up being harder than expected.
+
+My whiteboarding was "on window load, scroll to bottom (of specific cell)" so I tried to add a "window.onload" function whoch would scroll to the bottom, but apparently there is no built in function to do that.
+I consulted the AI and it said there is a function which does allow you to set where you load into the window, and the standard is to set your window position equal to the total height of the window, which will always put you at the bottom. 
+
+> Lessons Learned
+What I learned from that is that experimenting and building stuff is much more fun and productive after you have already read about the various syntax and methods commonly used in JS so you don't spend all day trying to reinvent things. So I went back to one of my huge books and crammed 80 pages covering ~100 commonly used commands before continuing with the project.

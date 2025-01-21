@@ -1,0 +1,2 @@
+Challenge #3
+The next challenge was that even when adding in the properly constructed code, it was still loading at the top of the window. I consulted the AI again and it said it was likely a timing issue. The window was loading in blank, scrolling to the bottom of the empty text box, and THEN populating the textbox. So I took the internals of the 'scrollToBottom' function and added them into my .then loop, making sure the scroll function happened after the text was loaded into the textbox.

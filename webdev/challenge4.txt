@@ -1,0 +1,13 @@
+I spent quite a bit of time trying to make it to where the most recent action was highlighted in gold. 
+
+const lines = data.split('\n');
+                const lastLine = lines[lines.length-1];
+                //splitting and modifying data streams is brain melting work
+                game.innerHTML = game.innerHTML.replace(lastLine, `<span class="last-line">${lastLine}</span>`);
+                //YOU HAVE TO USE `BACK TICKS` when using replace!!
+
+I could make the initial paragraph end in gold.
+
+But then every successive input stayed gold, because the <span> tag was baked into the old actions.
+
+The only solution I could manage required regenerating the entire text block every action to render the gold color. That seemed like it would get intensive for a large text file like AID, so I scrapped that feature. Oh well.
