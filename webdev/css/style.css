@@ -121,6 +121,17 @@ form {
     box-shadow: 4px 4px 6px rgba(255, 235, 205, 0.3)
 }
 
+.center-content {
+    text-align: center;
+    background-color: #141414;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.death-container {
+    padding: 10px;
+}
+
 .close {
     color:goldenrod;
     font-size: 24px;

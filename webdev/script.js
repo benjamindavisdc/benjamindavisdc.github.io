@@ -15,7 +15,8 @@ function takeDamage(damage){
 
     if (currentHP === 0) {
         document.getElementById("currentHP").innerText=`Dead`
-        document.getElementById("totalHP").innerText=``;  
+        document.getElementById("totalHP").innerText=``;
+        modal_background_d.style.display = "block";  //death screen!
     }
     else{
         document.getElementById("currentHP").innerText=`${currentHP}`
@@ -85,6 +86,7 @@ function burnToDeath(newText){
             const modal_background5 = document.getElementById("modal-background5");
             const modal_background6 = document.getElementById("modal-background6");
             const modal_background7 = document.getElementById("modal-background7");
+            const modal_background_d = document.getElementById("modal-background-d");
 
             const buttons = [
                 document.getElementById("button_challenge_1"),
@@ -113,8 +115,11 @@ function burnToDeath(newText){
             const modal_close5 = document.getElementById("close5");
             const modal_close6 = document.getElementById("close6");
             const modal_close7 = document.getElementById("close7");
+            const modal_closed = document.getElementById("closed");
+            
                 /*Try adding a loop here later to reduce redundancy */
 
+                //click the buttons to open Modal
             button_challenge_1.addEventListener("click",() => {
                 modal_background.style.display = "block";
             });
@@ -158,7 +163,9 @@ function burnToDeath(newText){
             modal_close7.addEventListener("click",() => {
                 modal_background7.style.display = "none";
             });
-
+            modal_closed.addEventListener("click",() => {
+                modal_background_d.style.display = "none";
+            });
 
 
             window.addEventListener("click", (event) => {
@@ -195,7 +202,11 @@ function burnToDeath(newText){
                 if (event.target === modal_background7) {
                     modal_background7.style.display = "none";
                 }});
-
+            
+                window.addEventListener("click", (event) => {
+                if (event.target === modal_background_d) {
+                    modal_background_d.style.display = "none";
+                }});
 
 
             //Challenge 1 Modal Text Input
@@ -261,6 +272,15 @@ function burnToDeath(newText){
                     game7.innerText = data;
             })
 
+            //Death Modal Text Input
+            fetch('death.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game_d = document.getElementById('modal-text-d');
+
+                    game_d.innerHTML = data;
+            })
+
 
                 //get the value of the prompt initialized, then set the value to your message.
             document.getElementById("fight_button_1").addEventListener("click", () =>{
@@ -299,7 +319,7 @@ function burnToDeath(newText){
     //         }
     //     }
             //This comes at the end of an IF ELSE**************
-           ;
+           
             
 
 
