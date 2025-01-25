@@ -1,5 +1,33 @@
 let outPutText=""
+
+//HP System
+        
+//Intital HP
+let currentHP = 205
+let totalHP = "/205"
+document.getElementById("currentHP").innerText=`${currentHP}`;
+document.getElementById("totalHP").innerText=`${totalHP}`;
+
+
+function takeDamage(damage){
+    currentHP=Math.max(0, currentHP-damage);
+    document.getElementById("currentHP").innerText=`${currentHP}`
+
+    if (currentHP === 0) {
+        document.getElementById("currentHP").innerText=`Dead`
+        document.getElementById("totalHP").innerText=``;  
+    }
+    else{
+        document.getElementById("currentHP").innerText=`${currentHP}`
+    }
+}
+
+function burnToDeath(newText){
+    outPutText += `\n\n${newText}\n\nYou rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!\n\nYou are now burning. \n\nYou take 20 damage.`
+    takeDamage(200);
+}
 // JavaScript to fetch the text from story.txt and load it into the div
+
         fetch('travel.txt')
             .then(response => response.text())
             .then(data => {
@@ -31,7 +59,7 @@ let outPutText=""
                         break;
                     
                     case "I run into the burning building to save an innocent puppy.":
-                        outPutText += `\n\n${newText}\n\nYou rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!\n\nYou are now burning. \n\nYou take 20 damage.`
+                        burnToDeath(newText);
                         break;
 
 
@@ -250,13 +278,29 @@ let outPutText=""
                 treeButton.value = "I challenge the black knight to a duel!";
             })
 
-            //HP System
-            const currentHP = document.getElementById("currentHP");
-            currentHP.innerText=205;
 
+           
+
+    //             currentHP.innerText = CurrentHP;
+    //             totalHP.innerHTML = TotalHP;
+    //     }
+
+    //     function updateHP(newHP){
+    //         const totalHP = document.getElementById("totalHP");
+    //         const currentHP = document.getElementById("currentHP");
+
+    // // Update current HP
+    //         currentHP = newHP; 
+            
+    //         if(currentHP <=0){            
+    //             totalHP.innerText="Dead";}
+    //             else{
+    //                 currentHP.innerText = currentHP;
+    //         }
+    //     }
             //This comes at the end of an IF ELSE**************
-           // const totalHP = document.getElementById("totalHP");
-            //currentHP.innerText="Dead";
+           ;
+            
 
 
 
