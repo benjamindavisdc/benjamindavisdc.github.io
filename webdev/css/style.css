@@ -27,7 +27,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.zero_class {
+/*.zero_class {
     background-color: #000000;
     text-align: left;
     padding: 30px;
@@ -53,7 +53,7 @@ a:hover {
     padding: 30px;
     font-size:large;
     }
-
+*/
 .custom-padding {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -106,4 +106,36 @@ form {
     grid-template-columns: 1fr 5fr 5fr 1fr;
     grid-template-rows: auto;
     line-height: 2em;
+}
+
+.modal-background{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(255, 235, 205, 0.3);
+}
+
+.modal-content {
+    background-color: #000;
+    position: relative;
+    margin: 10% auto; /*10% margins vertical and centered horizontal*/
+    border: 1px solid goldenrod;
+    width: 90%;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 4px 4px 6px rgba(255, 235, 205, 0.3)
+}
+
+.close {
+    color:goldenrod;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute; /*replacement for float. works better for inline*/
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    display: inline-block; /*This helps the close button act like a block which can then float right*/
 }
