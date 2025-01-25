@@ -1,7 +1,5 @@
-
-let outPutText = '';
-
-        // JavaScript to fetch the text from story.txt and load it into the div
+let outPutText=""
+// JavaScript to fetch the text from story.txt and load it into the div
         fetch('travel.txt')
             .then(response => response.text())
             .then(data => {
@@ -10,15 +8,6 @@ let outPutText = '';
                 outPutText = data;
                 game.innerText = data;
 
-                //outPutText will be the master data source displayed at different points
-
-                //game.innerText = data;
-
-                //
-                
-                //make the last line of the text output able to be targeted by css.
-                
-                //YOU HAVE TO USE `BACK TICKS` when using replace!!
                 game.scrollTop = game.scrollHeight; 
             })
             .catch(error => console.error('Error loading the adventure:', error));
@@ -34,13 +23,26 @@ let outPutText = '';
                 const game = document.getElementById('content'); // Assuming game is the element holding the existing text
             
                 // Concatenate the new text to the existing text
-                const newText = textInput.value;
-            
-                outPutText += `\n\n${newText}`; //output text = (outputtext+newtext)
+                const newText = textInput.value.trim();
+                //switch to provide different responses based on text inputs
+                switch (newText){
+                    case "I climb up the tree to try and rescue the cat.":
+                        outPutText += `\n\n${newText}\n\nYou climb up and get clawed and fall down.`
+                        break;
+                    
+                    case "I run into the burning building to save an innocent puppy.":
+                        outPutText += `\n\n${newText}\n\nYou rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!\n\nYou are now burning. \n\nYou take 20 damage.`
+                        break;
 
+
+                    default:
+                        outPutText += `\n\n${newText}`; //output text = (outputtext+newtext)
+                        break;
+            }
 
            
-                game.innerText = outPutText;                // Update the element with the new text
+                game.innerText = outPutText;             
+                // Update the element with the new text
                 game.scrollTop = game.scrollHeight;
 
                 textInput.value = '';
@@ -166,7 +168,96 @@ let outPutText = '';
                     modal_background7.style.display = "none";
                 }});
 
-                
+
+
+            //Challenge 1 Modal Text Input
+            fetch('challenge1.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game1 = document.getElementById('modal-text-1');
+
+                    game1.innerText = data;
+            })
+
+            //Challenge 2 Modal Text Input
+            fetch('challenge2.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game2 = document.getElementById('modal-text-2');
+
+                    game2.innerText = data;
+            })
+
+            //Challenge 3 Modal Text Input
+            fetch('challenge3.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game3 = document.getElementById('modal-text-3');
+
+                    game3.innerText = data;
+            })
+
+            //Challenge 4 Modal Text Input
+            fetch('challenge4.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game4 = document.getElementById('modal-text-4');
+
+                    game4.innerText = data;
+            })
+
+            //Challenge 5 Modal Text Input
+            fetch('challenge5.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game5 = document.getElementById('modal-text-5');
+
+                    game5.innerText = data;
+            })
+
+            //Challenge 6 Modal Text Input
+            fetch('challenge6.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game6 = document.getElementById('modal-text-6');
+
+                    game6.innerText = data;
+            })
+
+            //Challenge 7 Modal Text Input
+            fetch('challenge7.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const game7 = document.getElementById('modal-text-7');
+
+                    game7.innerText = data;
+            })
+
+
+                //get the value of the prompt initialized, then set the value to your message.
+            document.getElementById("fight_button_1").addEventListener("click", () =>{
+                const treeButton = document.getElementById("thePrompt")
+                treeButton.value = "I climb up the tree to try and rescue the cat.";
+            })
+            
+            document.getElementById("fight_button_2").addEventListener("click", () =>{
+                const treeButton = document.getElementById("thePrompt")
+                treeButton.value = "I run into the burning building to save an innocent puppy.";
+            })
+
+            document.getElementById("fight_button_3").addEventListener("click", () =>{
+                const treeButton = document.getElementById("thePrompt")
+                treeButton.value = "I challenge the black knight to a duel!";
+            })
+
+            //HP System
+            const currentHP = document.getElementById("currentHP");
+            currentHP.innerText=205;
+
+            //This comes at the end of an IF ELSE**************
+           // const totalHP = document.getElementById("totalHP");
+            //currentHP.innerText="Dead";
+
 
 
             // modal_close.addEventListener("click", () => {

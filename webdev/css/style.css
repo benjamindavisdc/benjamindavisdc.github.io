@@ -27,33 +27,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/*.zero_class {
-    background-color: #000000;
-    text-align: left;
-    padding: 30px;
-    }
 
-.first_class {
-    background-color: #1f1f1f;
-    text-align: left;
-    padding: 30px;
-    }
-
-.second_class {
-    background-color: #000000;
-    text-align: right;
-    padding: 30px;
-    font-weight: bold;
-    }
-
-.third_class {
-    background-color: #ccffcc;
-    color: #1b1b1b;
-    text-align: center;
-    padding: 30px;
-    font-size:large;
-    }
-*/
 .custom-padding {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -67,6 +41,7 @@ a:hover {
     font-weight: bold;
     border: 1px solid;
 }
+
 /* The game window */
 .output {
     background-color: #141414;
@@ -99,6 +74,13 @@ form {
     grid-template-columns: 1fr 10fr 1fr;
     grid-template-rows: 1fr 500px 1fr;
     row-gap: 30px;
+}
+
+.box8 .form-group {
+    display: grid;
+    grid-template-columns: 1fr auto; /* Input takes most space, button takes minimal */
+    gap: 10px; /* Spacing between input and button */
+    align-items: center; /* Vertically center-align items */
 }
 
 .container-grid4x1 {
