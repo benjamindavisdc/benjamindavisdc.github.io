@@ -68,6 +68,16 @@ form {
     padding-bottom: -30px;
 }
 
+.submit_button {
+    color: #ffffff;
+    background-color: crimson;
+    height: 40px;
+    width: 80px;
+    max-width: 100%;
+    border-color: #fff;
+    cursor: pointer;
+}
+
 
 .container-grid3x3 {
     display:grid;
