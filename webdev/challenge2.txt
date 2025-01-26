@@ -1,4 +1,4 @@
-Challenge #2
+
 Once I had the adventure in a big text box, I realized it just didn't look right. When loading in a recent game, I didn't want to be scrolled up to the top of my recent adventure. I wanted to see the screen I am used to: scrolled down to the bottom where my most recent actions have taken place, and where the prompt input window is. So I shrunk the text box and tried to make it to where I loaded into the page AT THE BOTTOM of the text box. This ended up being harder than expected.
 
 My whiteboarding was "on window load, scroll to bottom (of specific cell)" so I tried to add a "window.onload" function whoch would scroll to the bottom, but apparently there is no built in function to do that.

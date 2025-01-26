@@ -1,0 +1,11 @@
+
+The prompt input form is the most important element in the page. Since I'm not sending the text to a backend, I had to program each input and response using Javascript. I have a few minigames going simultaneously, as well as the ability to type normal text and have it sent into the text output window.
+Figuring out how to input text and have it trigger one of a dozen different conditions was tricky.
+
+I had a few individual loops and functions but they started to trigger each other and crash the output data, so I ended up using a switch case and had each input from a different button trigger its own function, which uses local variables, so different inputs wont conflict with one another.
+
+The prompt also triggers the HP system and death window.
+Setting up the HP system was really confusing, I kept mixing up elements and element.innerText. After working through 3 different health systems, I managed to get the HP counter working properly.
+
+The AI gave me the idea to create the takeDamage function, which made it easier for the switch case to track my health no matter what inputs I put in any order.
+

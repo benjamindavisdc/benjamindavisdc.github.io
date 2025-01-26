@@ -10,4 +10,4 @@ I could make the initial paragraph end in gold.
 
 But then every successive input stayed gold, because the <span> tag was baked into the old actions.
 
-The only solution I could manage required regenerating the entire text block every action to render the gold color. That seemed like it would get intensive for a large text file like AID, so I scrapped that feature. Oh well.
+The only solution I could manage required regenerating the entire text block every action to render the gold color. That seemed like it would get intensive for a large text file like AID, so I scrapped that feature. 
