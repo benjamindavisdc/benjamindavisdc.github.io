@@ -27,48 +27,53 @@ function takeDamage(damage){
 }
 
 function burnToDeath(newText){
-    outPutText += `\n\n${newText}\n\nYou rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!\n\nYou are now burning. \n\nYou take 20 damage.`
+    outPutText += `<p>${newText}</p><p>You rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!</p><p>You are now burning. </p><p>You take 20 damage.</p>`
     takeDamage(20);
 }
 
 function climbingTheTree(newText){
     if (youreBurning === true){
-    outPutText += `\n\n${newText}\n\nYou begin climbing up the tree, but the fire quickly spreads. Soon you find yourself in the middle of a raging inferno. You see the cat leap to safety as the burning tree collapses around you. You hit the ground like a falling star, praying that it's not your end.\n\nYou take 100 damage.`
+        outPutText += `<p>${newText}</p><p>You begin climbing up the tree, but the fire quickly spreads. Soon you find yourself in the middle of a raging inferno. You see the cat leap to safety as the burning tree collapses around you. You hit the ground like a falling star, praying that it's not your end.</p><p>You take 100 damage.</p>`
     takeDamage(100);}
+    else if(dismembermentCounter>=3){
+        outPutText += `<p>${newText}</p><p>You struggle to climb up the tree with no arms. After much exertion, and blood loss, you reach the top. The cat gently purrs and licks your wounds. You feel very tired.</p><p>
+        You take 80 damage.</p>`
+        takeDamage(80);
+    }
     else{
-    outPutText += `\n\n${newText}\n\nYou climb up and get clawed and fall down.\n\nYou take 30 damage.`
-    takeDamage(30);
+        outPutText += `<p>${newText}</p><p>You climb up and get clawed and fall down.</p>You take 30 damage.`
+        takeDamage(30);
 }}
                  
 function theBlackKnightAlwaysTriumphs(newText){
     switch(dismembermentCounter){ //the argument passed into function is compared to the cases
         case 0:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your left arm.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left arm.</span></p><p><span style="font-weight: bold; background-color:crimson">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
 
         case 1:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your left leg.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left leg.</span></p><p><span style="font-weight: bold; background-color:crimson">"Have at you!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 2:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your right arm.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right arm.</span></p><p><span style="font-weight: bold; background-color:crimson">"Come on, you pansy!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 3:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your right leg.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right leg.</span></p><p><span style="font-weight: bold; background-color:crimson">"Had enough?!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 4:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your head.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">head</span>.</p><p><span style="font-weight: bold; background-color:crimson">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         default:
-            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your head.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your head.</p><p><span style="font-weight: bold; background-color:crimson">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
                    
@@ -85,7 +90,7 @@ function theBlackKnightAlwaysTriumphs(newText){
                 const game = document.getElementById('content');
 
                 outPutText = data;
-                game.innerText = data;
+                game.innerHTML = data;
 
                 game.scrollTop = game.scrollHeight; 
             })
@@ -124,7 +129,7 @@ function theBlackKnightAlwaysTriumphs(newText){
             }
 
            
-                game.innerText = outPutText;             
+                game.innerHTML = outPutText;             
                 // Update the element with the new text
                 game.scrollTop = game.scrollHeight;
 

@@ -7,3 +7,5 @@ The AI told me that this type of process actually needs to be done asynchronousl
 
 > Lessons Learned
 That helped make me aware of some of the downsides of dynamic sites. They have greatly increased functionality, but this also increases the complexity of managing the UI when doing seemingly easy things like displaying text.
+
+Part 2: I was using innerText for a long time, since formatting the .txt file was easier that way. But I eventually decided to switch to innerHTML so I could style some of the returing text and make it look more interesting. I had to reformat all the inputs but the result looks great.
