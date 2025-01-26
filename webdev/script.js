@@ -323,12 +323,12 @@ function theBlackKnightAlwaysTriumphs(newText){
             })
 
             //Challenge 7 Modal Text Input
-            fetch('challenge7.txt')
+            fetch('challenge7.html')
                 .then(response => response.text())
                 .then(data => {
                     const game7 = document.getElementById('modal-text-7');
 
-                    game7.innerText = data;
+                    game7.innerHTML = data;
             })
 
             //Death Modal Text Input
@@ -358,7 +358,6 @@ function theBlackKnightAlwaysTriumphs(newText){
             })
 
 
-           
 
     //             currentHP.innerText = CurrentHP;
     //             totalHP.innerHTML = TotalHP;
