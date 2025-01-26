@@ -1,5 +1,3 @@
-Challenge #5
-Multiple Modals
 
 This was my first time creating modals, which was very exciting. Setting them up wasn't too hard, but what really ended up driving me crazy was figuring out how to get them to close.
 
@@ -11,5 +9,5 @@ To my surprise, I couldn't close any but the first modal. I tried all kinds of t
 
 Finally I consulted the AI and realized that I still had been reusing the same Id for each button, which is why only the first one was working. Once I gave them unique Ids, then I was able to make the close button work. I had to go through a similar process with the "click-away" feature of the modal. Each screen needed a separate event listener targeting each appropriate modal. So my code ended up looking very repetitive with 9 modals, 9 close button listeners, 9 click away listeners.
 
-I knew there had to be a better way to make the code more dynamic, but I couldn't figure out a way to get the close listeners to dynamically get the appropriate IDs. So I moved on with my prototype and kept reading my book during the day.
+I knew there had to be a better way to make the code more dynamic, but I couldn't figure out a way to get the close listeners to dynamically get the appropriate IDs. So I moved on with my prototype and kept studying.
 

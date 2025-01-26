@@ -1,4 +1,6 @@
 let outPutText=""
+let dismembermentCounter = 0;        
+let youreBurning = null;
 
 //HP System
         
@@ -16,8 +18,9 @@ function takeDamage(damage){
     if (currentHP === 0) {
         document.getElementById("currentHP").innerText=`Dead`
         document.getElementById("totalHP").innerText=``;
-        modal_background_d.style.display = "block";  //death screen!
-    }
+        setTimeout(()=>{
+            modal_background_d.style.display = "block";  //death screen!
+    }, 2000);}
     else{
         document.getElementById("currentHP").innerText=`${currentHP}`
     }
@@ -36,7 +39,43 @@ function climbingTheTree(newText){
     outPutText += `\n\n${newText}\n\nYou climb up and get clawed and fall down.\n\nYou take 30 damage.`
     takeDamage(30);
 }}
-                        
+                 
+function theBlackKnightAlwaysTriumphs(newText){
+    switch(dismembermentCounter){ //the argument passed into function is compared to the cases
+        case 0:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your left arm.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+
+        case 1:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your left leg.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+            
+        case 2:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your right arm.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+            
+        case 3:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your right leg.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+            
+        case 4:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your head.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+            
+        default:
+            outPutText += `\n\n${newText}\n\nThe Black Knight chops off your head.\n\nThe Black knight always triumphs!\n\nYou take 50 damage.`;
+            dismembermentCounter +=1;
+            break;
+                   
+    }
+
+
+}
 
 // JavaScript to fetch the text from story.txt and load it into the div
 
@@ -53,8 +92,6 @@ function climbingTheTree(newText){
             .catch(error => console.error('Error loading the adventure:', error));
 
             
-        
-let youreBurning = null;
 
             //appends text entries
             document.getElementById('theForm').addEventListener('submit', function(event) {
@@ -76,6 +113,10 @@ let youreBurning = null;
                         youreBurning = true;
                         break;
 
+                    case "I challenge the black knight to a duel!":
+                        theBlackKnightAlwaysTriumphs(newText);
+                        takeDamage(50);
+                        break;
 
                     default:
                         outPutText += `\n\n${newText}`; //output text = (outputtext+newtext)
