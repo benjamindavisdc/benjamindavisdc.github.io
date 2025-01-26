@@ -25,8 +25,19 @@ function takeDamage(damage){
 
 function burnToDeath(newText){
     outPutText += `\n\n${newText}\n\nYou rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!\n\nYou are now burning. \n\nYou take 20 damage.`
-    takeDamage(200);
+    takeDamage(20);
 }
+
+function climbingTheTree(newText){
+    if (youreBurning === true){
+    outPutText += `\n\n${newText}\n\nYou begin climbing up the tree, but the fire quickly spreads. Soon you find yourself in the middle of a raging inferno. You see the cat leap to safety as the burning tree collapses around you. You hit the ground like a falling star, praying that it's not your end.\n\nYou take 100 damage.`
+    takeDamage(100);}
+    else{
+    outPutText += `\n\n${newText}\n\nYou climb up and get clawed and fall down.\n\nYou take 30 damage.`
+    takeDamage(30);
+}}
+                        
+
 // JavaScript to fetch the text from story.txt and load it into the div
 
         fetch('travel.txt')
@@ -43,6 +54,7 @@ function burnToDeath(newText){
 
             
         
+let youreBurning = null;
 
             //appends text entries
             document.getElementById('theForm').addEventListener('submit', function(event) {
@@ -56,11 +68,12 @@ function burnToDeath(newText){
                 //switch to provide different responses based on text inputs
                 switch (newText){
                     case "I climb up the tree to try and rescue the cat.":
-                        outPutText += `\n\n${newText}\n\nYou climb up and get clawed and fall down.`
+                        climbingTheTree(newText);
                         break;
                     
                     case "I run into the burning building to save an innocent puppy.":
                         burnToDeath(newText);
+                        youreBurning = true;
                         break;
 
 
@@ -242,7 +255,7 @@ function burnToDeath(newText){
                 .then(data => {
                     const game4 = document.getElementById('modal-text-4');
 
-                    game4.innerText = data;
+                    game4.innerHTML = data;
             })
 
             //Challenge 5 Modal Text Input
@@ -260,7 +273,7 @@ function burnToDeath(newText){
                 .then(data => {
                     const game6 = document.getElementById('modal-text-6');
 
-                    game6.innerText = data;
+                    game6.innerHTML = data;
             })
 
             //Challenge 7 Modal Text Input

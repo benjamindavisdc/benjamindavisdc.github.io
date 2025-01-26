@@ -1,6 +1,6 @@
 <div class="death-container">
         <img src="tombstone.webp" alt="Tombstone">
         <p>
-            A team of capable nurses rescue you from your misfortune. They bandage you up, and you spend the next few years in assissted living, eating Jello and reading webcomics. You peacefully pass away at the ripe age of 47, which is pretty good for an adventurer.
-        </p>
+            <h5>A team of capable nurses rescue you from your misfortune. They bandage you up, and you spend the next few years in assissted living, eating Jello and reading webcomics. You peacefully pass away at the ripe age of 47, which is pretty good for an adventurer.
+        </h5></p>
     </div>
