@@ -27,13 +27,13 @@ function takeDamage(damage){
 }
 
 function burnToDeath(newText){
-    outPutText += `<p>${newText}</p><p>You rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!</p><p>You are now burning. </p><p>You take 20 damage.</p>`
+    outPutText += `<p>${newText}</p><p>You rush into the building, searching each room for the sounds of the innocent little puppy. You leap through the flames and cough as the smoke penetrates your lungs and makes your head spin. At the top of the stairs you find the tiny puppy, and heroically leap out of the second floor window while gently nestling him in your arms. Your pants and hair are on fire, and you feel like you are being cooked!</p><p><span style="font-weight: bold; background-color:crimson">You are now burning.</span> </p><p>You take 20 damage.</p>`
     takeDamage(20);
 }
 
 function climbingTheTree(newText){
     if (youreBurning === true){
-        outPutText += `<p>${newText}</p><p>You begin climbing up the tree, but the fire quickly spreads. Soon you find yourself in the middle of a raging inferno. You see the cat leap to safety as the burning tree collapses around you. You hit the ground like a falling star, praying that it's not your end.</p><p>You take 100 damage.</p>`
+        outPutText += `<p>${newText}</p><p>You begin climbing up the tree, but the fire quickly spreads. Soon you find yourself in the middle of a raging inferno. You see the cat leap to safety as the burning tree collapses around you. <span style="font-weight: bold; background-color:crimson">You hit the ground like a falling star, praying that it's not your end.</span></p><p>You take 100 damage.</p>`
     takeDamage(100);}
     else if(dismembermentCounter>=3){
         outPutText += `<p>${newText}</p><p>You struggle to climb up the tree with no arms. After much exertion, and blood loss, you reach the top. The cat gently purrs and licks your wounds. You feel very tired.</p><p>
@@ -41,34 +41,34 @@ function climbingTheTree(newText){
         takeDamage(80);
     }
     else{
-        outPutText += `<p>${newText}</p><p>You climb up and get clawed and fall down.</p>You take 30 damage.`
+        outPutText += `<p>${newText}</p><p>You climb up and get clawed and fall down.</p><p>You take 30 damage.</p>`
         takeDamage(30);
 }}
                  
 function theBlackKnightAlwaysTriumphs(newText){
     switch(dismembermentCounter){ //the argument passed into function is compared to the cases
         case 0:
-            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left arm.</span></p><p><span style="font-weight: bold; background-color:crimson">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left arm.</span></p><p><span style="font-weight: bold; background-color:gold; color:black">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
 
         case 1:
-            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left leg.</span></p><p><span style="font-weight: bold; background-color:crimson">"Have at you!"</span></p><p>You take 50 damage.</p>`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">left leg.</span></p><p><span style="font-weight: bold; background-color:gold; color:black">"Have at you!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 2:
-            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right arm.</span></p><p><span style="font-weight: bold; background-color:crimson">"Come on, you pansy!"</span></p><p>You take 50 damage.</p>`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right arm.</span></p><p><span style="font-weight: bold; background-color:gold; color:black">"Come on, you pansy!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 3:
-            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right leg.</span></p><p><span style="font-weight: bold; background-color:crimson">"Had enough?!"</span></p><p>You take 50 damage.</p>`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">right leg.</span></p><p><span style="font-weight: bold; background-color:gold; color:black">"Had enough?!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
         case 4:
-            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">head</span>.</p><p><span style="font-weight: bold; background-color:crimson">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
+            outPutText += `<p>${newText}</p><p>The Black Knight chops off your <span style="font-weight: bold;">head</span>.</p><p><span style="font-weight: bold; background-color:gold; color:black">"The Black knight always triumphs!"</span></p><p>You take 50 damage.</p>`;
             dismembermentCounter +=1;
             break;
             
@@ -81,10 +81,58 @@ function theBlackKnightAlwaysTriumphs(newText){
 
 
 }
+// //cityFinder script
+
+// async function fetchCityData(){
+// try{
+//     const cityData = await fetch("uscitiesTrimmed.csv");
+//     const cityText = await cityData.text();
+//     return cityText; //fetch is async so takes a lot of extra work to return stuff?
+// }
+//     catch (error){
+//         console.error('Error loading the data:', error);
+//     }}
+
+//     let collection = [];
+
+// async function createCityCollection() {
+//     const cityText = await fetchCityData(); //but we finally got it, boys
+       
+//     const lines = cityText.split('\n'); //split collection into rows
+    
+
+//     for (let i = 1; i < lines.length; i++){
+//         const row = lines[i];
+//         const [city, state, population] = row.split(',');//split rows into cells
+//         collection.push({
+//             city: city.trim(),
+//             state: state.trim(),
+//             population: population.trim()}
+//     )};
+// }
+
+
+// (async () => {
+//     await createCityCollection();
+//     console.log("City data loaded successfully!");
+// })();
+
+
+// //the actual function to check text input against the DB and return what we need.
+// function displayCityInfo(cityInput){
+//     const cityInfo = collection.find(item => item.city.toLowerCase() === cityInput.toLowerCase()
+// );
+//     if (cityInfo){
+//     outPutText += `<p>${newText}</p><p>City: ${cityInfo.city}, State: ${cityInfo.state}, Population: ${cityInfo.population}</p>`;
+//     } else {
+//         outPutText += `<p>${newText}</p><p>City not found.</p>`;
+//     }
+// }
+
 
 // JavaScript to fetch the text from story.txt and load it into the div
 
-        fetch('travel.txt')
+        fetch('bumble.txt')
             .then(response => response.text())
             .then(data => {
                 const game = document.getElementById('content');
@@ -122,6 +170,10 @@ function theBlackKnightAlwaysTriumphs(newText){
                         theBlackKnightAlwaysTriumphs(newText);
                         takeDamage(50);
                         break;
+
+                    // case cityInfo:
+                    //     displayCityInfo(cityInput);
+                    //     break;
 
                     default:
                         outPutText += `\n\n${newText}`; //output text = (outputtext+newtext)

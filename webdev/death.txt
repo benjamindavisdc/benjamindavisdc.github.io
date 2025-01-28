@@ -1,6 +1,6 @@
-<div class="death-container" style="max-width: 100vw; max-height: 100vh; width:auto; height: auto; margin: auto;">
-        <img src="tombstone.webp" alt="Tombstone" style="max-width: 100vw; max-height: 100vh; width:auto; height: auto; margin: auto;">
-        <p>
-            <h5>A team of capable nurses rescue you from your misfortune. They bandage you up, and you spend the next few years in assissted living, eating Jello and reading webcomics. You peacefully pass away at the ripe age of 47, which is pretty good for an adventurer.
-        </h5></p>
-    </div>
+<div class="death-container" style="max-width: 100vw; margin: auto; text-align: center;">
+  <img src="tombstone.webp" alt="Tombstone" style="max-width: 100%; height: auto; margin: auto;">
+  <h5>
+    A team of capable nurses rescue you from your misfortune. They bandage you up, and you spend the next few years in assisted living, eating Jello and reading webcomics. You peacefully pass away at the ripe age of 47, which is pretty good for an adventurer.
+  </h5>
+</div>
