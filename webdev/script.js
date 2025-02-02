@@ -2,6 +2,17 @@ let outPutText=""
 let dismembermentCounter = 0;        
 let youreBurning = null;
 
+//counter, just for fun
+//  let seconds = 10;
+//  function countdown(){
+//      seconds-=1;
+//      document.getElementById("counter").innerText=seconds//.toFixed(1);
+//      if (seconds <=0){clearInterval(tenSecondStop)} 
+//  }//seconds are the innertext of the counter ID
+//  tenSecondStop=setInterval(countdown,1000)
+
+ 
+
 //HP System
         
 //Intital HP
