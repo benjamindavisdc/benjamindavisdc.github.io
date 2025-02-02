@@ -331,6 +331,8 @@ function theBlackKnightAlwaysTriumphs(newText){
                 }});
 
 
+
+
             //Challenge 1 Modal Text Input
             fetch('challenge1.txt')
                 .then(response => response.text())
@@ -402,6 +404,87 @@ function theBlackKnightAlwaysTriumphs(newText){
 
                     game_d.innerHTML = data;
             })
+
+
+
+            //Listeners for the Site description page
+
+
+            const descLink = document.getElementById('Desc_link');
+            descLink.addEventListener("click", (e) => {
+                e.preventDefault();
+            
+                fetch('challenge7.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not OK");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('modal-text-7').innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching content:", error);
+                    });
+            });
+
+            const htmlLink = document.getElementById('HTML_link');
+            htmlLink.addEventListener("click", (e) => {
+                e.preventDefault();
+            
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/webdev2.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not OK");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('modal-text-7').innerText = data;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching content:", error);
+                    });
+            });
+
+            const cssLink = document.getElementById('CSS_link');
+            cssLink.addEventListener("click", (e) => {
+                e.preventDefault();
+            
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/css/style.css')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not OK");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('modal-text-7').innerText = data;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching content:", error);
+                    });
+            });
+
+            const jsLink = document.getElementById('JS_link');
+            jsLink.addEventListener("click", (e) => {
+                e.preventDefault();
+            
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/script.js')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not OK");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('modal-text-7').innerText = data;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching content:", error);
+                    });
+            });
 
 
                 //get the value of the prompt initialized, then set the value to your message.
