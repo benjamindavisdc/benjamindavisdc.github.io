@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "togetherai-backend/**/*",
+        "src": "api/chat.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "/togetherai-backend/$1"
+        "src": "/api/chat",
+        "dest": "/api/chat.js"
       }
     ]
   }
