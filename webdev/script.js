@@ -139,6 +139,12 @@ function theBlackKnightAlwaysTriumphs(newText){
 //         outPutText += `<p>${newText}</p><p>City not found.</p>`;
 //     }
 // }
+// (async () => {
+//     await createCityCollection();
+//     const firstItem = collection[1];
+// console.log(`City: ${firstItem.city}, State: ${firstItem.state}, Population: ${firstItem.population}`);
+// ;
+// })();
 
 
 // JavaScript to fetch the text from story.txt and load it into the div
@@ -187,8 +193,8 @@ function theBlackKnightAlwaysTriumphs(newText){
                     //     break;
 
                     default:
-                        outPutText += `\n\n${newText}`; //output text = (outputtext+newtext)
-                        break;
+                    outPutText += `<p>${newText}</p>`; //output text = (outputtext+newtext)
+                    
             }
 
            
@@ -427,6 +433,7 @@ function theBlackKnightAlwaysTriumphs(newText){
                     .catch(error => {
                         console.error("Error fetching content:", error);
                     });
+                    document.getElementById('modal-text-7').classList.remove('codeon')
             });
 
             const htmlLink = document.getElementById('HTML_link');
@@ -446,6 +453,7 @@ function theBlackKnightAlwaysTriumphs(newText){
                     .catch(error => {
                         console.error("Error fetching content:", error);
                     });
+                    document.getElementById('modal-text-7').classList.add('codeon')
             });
 
             const cssLink = document.getElementById('CSS_link');
@@ -465,6 +473,7 @@ function theBlackKnightAlwaysTriumphs(newText){
                     .catch(error => {
                         console.error("Error fetching content:", error);
                     });
+                    document.getElementById('modal-text-7').classList.add('codeon')
             });
 
             const jsLink = document.getElementById('JS_link');
@@ -484,6 +493,7 @@ function theBlackKnightAlwaysTriumphs(newText){
                     .catch(error => {
                         console.error("Error fetching content:", error);
                     });
+                    document.getElementById('modal-text-7').classList.add('codeon')
             });
 
 

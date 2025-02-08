@@ -1,0 +1,158 @@
+<html>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <!-- Prism Css. Makes code text look pretty -->
+    <link href="css/prism.css" rel="stylesheet" />
+
+
+    <title>Ben Davis Web Dev</title>
+
+   <!-- Bootstrap Css -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+
+   <!-- Custom Css -->
+    <link rel="stylesheet" href="css/style.css">
+
+       <!-- The Header Nav Bar -->
+ </head>
+ <body>
+    <script src="prism.js"></script>
+   <header>
+      <button type="button" class="button-33" id="button_challenge_1">Dynamic Text Output</button>
+      <button type="button" class="button-34" id="button_challenge_2">The Scroll Window</button>
+      <button type="button" class="button-33" id="button_challenge_3">The Revolutionary Travel System</button>
+      <button type="button" class="button-34" id="button_challenge_4">Dynamic Coloring</button>
+      <button type="button" class="button-33" id="button_challenge_5">Multiple Modals</button>
+      <button type="button" class="button-34" id="button_challenge_6">Multiple Prompt Inputs</button>
+      <button type="button" class="button-33" id="button_challenge_7">Read Me</button>
+   </header>
+
+   <!-- The title, game output, and prompt input window -->
+  <div class = "container-grid3x3">
+    <div class = "box1"></div>
+    <div class = "box2"><h1>Vanilla JS + CSS Grid Demo Site</h1></div>
+    <div class = "box3"></div>
+    <div class = "box4"></div>
+    <div class = "box5 output" id="content"></div>
+    <div class = "box6"></div>
+    <div class = "box7"></div>
+    <div class = "box8 prompt">
+        <form id="theForm">
+            <div class="form-group">
+                <textarea type="text" class="form-control" id="thePrompt" placeholder="What adventures await you?"></textarea>
+                <button class="submit_button">Submit</button></div>
+        </form>
+    </div>
+    <div class = "box9"></div>
+</div>
+
+       <!-- The stats and body attack buttons -->
+
+    <div class = "container-grid4x1">
+        <div class="1stquart"></div>
+        <div class = "2ndquart">Sir Bumble<br>HP: 
+            <span id="currentHP">C</span>
+            <text id="totalHP">/T</text>
+                    <br></div>
+        <div class = "3rdquart">
+            <button type="button" class="btn btn-success btn-rounded me-2" id="fight_button_1">Rescue a cat from a tree.</button><br>
+            <button type="button" class="btn btn-danger me-2" id="fight_button_2">Run into a burining building!</button><br>
+            <button type="button" class="btn btn-warning me-2" id="fight_button_3">Challenge the black knight!</button><br>
+            </div>
+        <div class = "4thquart"></div>
+    </div>
+<br>
+
+<br>
+<div id="modal-background" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close">&times;</span>
+        <h1>Challenge #1</h1>
+        <span id="modal-text-1"></span>
+    </div>
+</div>
+
+<div id="modal-background2" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close2">&times;</span>
+        <h1>Challenge #2</h1>
+        <span id="modal-text-2"></span>
+    </div>
+</div>
+
+<div id="modal-background3" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close3">&times;</span>
+        <h1>Challenge #3</h1>
+        <span id="modal-text-3"></span>
+    </div>
+</div>
+
+<div id="modal-background4" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close4">&times;</span>
+        <h1>Challenge #4</h1>
+        <span id="modal-text-4"></span>
+    </div>
+</div>
+
+<div id="modal-background5" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close5">&times;</span>
+        <h1>Challenge #5</h1>
+        <span id="modal-text-5"></span>
+    </div>
+</div>
+
+<div id="modal-background6" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close6">&times;</span>
+        <h1>Challenge #6</h1>
+        <span id="modal-text-6"></span>
+    </div>
+</div>
+
+<div id="modal-background7" class="modal-background">
+    <div id="modal-header-1" class="modal-content">
+        <span class="close" id="close7">&times;</span>
+        <h1>Source Code and Site Description</h1>
+        <h4 style="display: flex; justify-content: center; align-items: center;">
+
+            <a href="https://github.com/benjamindavisdc/benjamindavisdc.github.io/blob/main/webdev/webdev2.html" class="tab-link" id="Desc_link" target="_blank">Site Description</a> 
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+            <a href="https://github.com/benjamindavisdc/benjamindavisdc.github.io/blob/main/webdev/webdev2.html" class="tab-link" id="HTML_link" target="_blank">HTML</a> 
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            
+            <a href="https://github.com/benjamindavisdc/benjamindavisdc.github.io/blob/main/webdev/css/style.css" class="tab-link" id="CSS_link" target="_blank">CSS</a> 
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            
+            <a href="javascript:void(0)" class="tab-link" id="JS_link" >JS</a></h4>
+            <hr>
+            
+        <span class="codeoff" id="modal-text-7"></span>
+    </div>
+</div>
+
+<div id="modal-background-d" class="modal-background">
+    <div id="modal-header-d" class="center-content modal-content">
+        <span class="close" id="closed">&times;</span>
+        <h1>You're dead!</h1>
+        <span id="modal-text-d"></span>
+    </div>
+</div>
+
+
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>

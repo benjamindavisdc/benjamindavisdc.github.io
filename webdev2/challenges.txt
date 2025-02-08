@@ -1,0 +1,1 @@
+Creating a clone of the Heroes UI didn't seem too hard at first, since it's not fully developed yet, but there were a few unexpected features that needed to be added and challenges that came with it.
