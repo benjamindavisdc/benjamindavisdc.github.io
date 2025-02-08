@@ -1,8 +1,17 @@
 import Together from "together-ai"; // Import the TogetherAI package
+import cors from "cors"; //
 
 const together = new Together(); // Initialize TogetherAI
 
+const corsOptions = {
+    origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+};
 export default async function handler(req, res) {
+    // Use CORS for this API handler
+    cors(corsOptions)(req, res, () => {});
+
     if (req.method === 'POST') {
         try {
             // Get the user message from the request body
@@ -10,8 +19,8 @@ export default async function handler(req, res) {
 
             // Send the message to TogetherAI for processing
             const response = await together.chat.completions.create({
-                messages: [{"role": "user", "content": message}], // Pass user message
-                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo", // Specify the model
+                messages: [{"role": "user", "content": message}],
+                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
             });
 
             // Extract the AI response from the result
