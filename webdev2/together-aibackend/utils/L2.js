@@ -1,5 +1,5 @@
-import { loadWorld, saveWorld } from './helpers.js';
 import Together from 'together-ai';
+import { loadWorld, saveWorld } from './helpers.js';
 import { getTogetherApiKey, loadEnv } from './helpers.js';
 
 const client = new Together({ apiKey: getTogetherApiKey() });
@@ -46,7 +46,10 @@ world['start'] = start;
 saveWorld(world, '../Saves/YourWorld_L1py.json');
 
 
-function run_action(message, history, game_state) {
+function run_action(message, history =[], game_state) {
+    if (!Array.isArray(history)) {
+        history = [];
+    }
     if (message === 'start game') {
         return game_state['start'];
     }
