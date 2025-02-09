@@ -2,7 +2,6 @@ import Together from 'together-ai';
 import { loadWorld, saveWorld } from './helpers.js';
 import { getTogetherApiKey } from './helpers.js';
 import cors from "cors"; //
-import handler from "../api/chat.js"
 
 const client = new Together({ apiKey: getTogetherApiKey() });
 
@@ -18,20 +17,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
         try {
-            // Get the user message from the request body
-            const { message } = req.body;
-
-            // Send the message to TogetherAI for processing
-            const response = await together.chat.completions.create({
-                messages: [{"role": "user", "content": message}],
-                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
-            });
-
-            // Extract the AI response from the result
-            const aiResponse = response.choices[0].message.content;
-
-            // Send back the AI response to the frontend
-            res.status(200).json({ response: aiResponse });
+            main_loop()
 
         } catch (error) {
             console.error('Error with Together API:', error);
@@ -138,4 +124,4 @@ const game_state = {
 function main_loop(message, history) {
     return run_action(message, history, game_state);
 }
-start_game(main_loop, true);
+//start_game(main_loop, true);
