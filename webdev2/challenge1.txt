@@ -1,9 +1,38 @@
+LLm integration error
 
-The first use of JS I employed was filling a div with dynamic text from a local file.
-For my whiteboarding I had intended to simply 1. fetch the text and extract the body, 2. set the text to a variable, then 3. assign the text to output in a cell. But that resulted in a blank page.
-The AI told me that this type of process actually needs to be done asynchronously. So I had to do my first THEN function (fetch text and extract body, take the response stream and convert it into readable text, then set it as a variable which is outputted by the cell with the appropraite id)
+Access to fetch at 'https://togetherai-backend.vercel.app/api/chat' from origin 'https://benjamindavisdc.github.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+togetherai-backend.vercel.app/api/chat:1 
+        
+        
+    Failed to load resource: net::ERR_FAILED
+script.js:61 Error sending message: TypeError: Failed to fetch
+    at sendMessageToBackend (script.js:44:32)
+    at HTMLFormElement.<anonymous> (script.js:85:9)
 
-> Lessons Learned
-That helped make me aware of some of the downsides of dynamic sites. They have greatly increased functionality, but this also increases the complexity of managing the UI when doing seemingly easy things like displaying text.
 
-I was using innerText for a long time, since formatting the .txt file was easier that way. But I eventually decided to switch to innerHTML so I could style some of the returing text and make it look more interesting. I had to reformat all the inputs but the result looks great.
+
+
+Visiting my backend directly kept giving me an error
+
+500: INTERNAL_SERVER_ERROR
+Code: FUNCTION_INVOCATION_FAILED
+ID: dev1::dev1::bkbvt-1739052840551-78299961fc8d
+
+And the error logs read:
+{"error":"Method Not Allowed"}
+
+I looked through the logic of my chat app:
+
+            // Send back the AI response to the frontend
+            res.status(200).json({ response: aiResponse });
+
+        } catch (error) {
+            console.error('Error with Together API:', error);
+            res.status(500).json({ error: 'Failed to get response from Together API' });
+        }
+    } else {
+        // If it's not a POST request, respond with 405 (Method Not Allowed)
+        res.status(405).json({ error: 'Method Not Allowed' });
+    }
+
+and the "Method not allowed" error wasn't really an error, it is the expected response when looked at by the browser, since browsers GET rather than POST, when the function is actually called.

@@ -2,16 +2,6 @@ let outPutText=""
 let dismembermentCounter = 0;        
 let youreBurning = null;
 
-//counter, just for fun
-//  let seconds = 10;
-//  function countdown(){
-//      seconds-=1;
-//      document.getElementById("counter").innerText=seconds//.toFixed(1);
-//      if (seconds <=0){clearInterval(tenSecondStop)} 
-//  }//seconds are the innertext of the counter ID
-//  tenSecondStop=setInterval(countdown,1000)
-
- 
 
 //HP System
         
@@ -50,8 +40,9 @@ async function sendMessageToBackend(userMessage) {
         });
 
         const data = await response.json();
+        console.log("Response from backend:", data);  // Add a log here to see the response
+
         if (data.response) {
-            // Append the AI response to the chat
             outPutText += `<p><strong>AI:</strong> ${data.response}</p>`;
             updateChatWindow();
         } else {
@@ -61,6 +52,7 @@ async function sendMessageToBackend(userMessage) {
         console.error('Error sending message:', error);
     }
 }
+
 
 // Function to update the chat window
 function updateChatWindow() {
@@ -383,16 +375,16 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
                 //get the value of the prompt initialized, then set the value to your message.
             document.getElementById("fight_button_1").addEventListener("click", () =>{
                 const treeButton = document.getElementById("thePrompt")
-                treeButton.value = "I climb up the tree to try and rescue the cat.";
+                treeButton.value = "";
             })
             
             document.getElementById("fight_button_2").addEventListener("click", () =>{
                 const treeButton = document.getElementById("thePrompt")
-                treeButton.value = "I run into the burning building to save an innocent puppy.";
+                treeButton.value = "";
             })
 
             document.getElementById("fight_button_3").addEventListener("click", () =>{
                 const treeButton = document.getElementById("thePrompt")
-                treeButton.value = "I challenge the black knight to a duel!";
+                treeButton.value = "";
             })
 
