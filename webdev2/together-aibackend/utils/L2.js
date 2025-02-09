@@ -66,6 +66,7 @@ const model_output = await client.chat.completions.create({
 
 const start = model_output.choices[0].message.content;
 console.log(start);
+//
 world['start'] = start;
 // saveWorld(world, '../shared_data/Kyropeia.json');  // preserve video version
 saveWorld(world, '../Saves/YourWorld_L1py.json');
@@ -76,7 +77,7 @@ function run_action(message, history =[], game_state) {
         history = [];
     }
     if (message === 'start game') {
-        return game_state['start'];
+game_state['start'];
     }
 
     const system_prompt = `You are an AI Game master. Your job is to write what 
