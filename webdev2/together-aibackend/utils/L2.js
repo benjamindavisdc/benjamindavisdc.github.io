@@ -1,8 +1,47 @@
 import Together from 'together-ai';
 import { loadWorld, saveWorld } from './helpers.js';
-import { getTogetherApiKey, loadEnv } from './helpers.js';
+import { getTogetherApiKey } from './helpers.js';
+import cors from "cors"; //
+import handler from "../api/chat.js"
 
 const client = new Together({ apiKey: getTogetherApiKey() });
+
+const corsOptions = {
+    origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+};
+
+export default async function handler(req, res) {
+    // Use CORS for this API handler
+    cors(corsOptions)(req, res, () => {});
+
+    if (req.method === 'POST') {
+        try {
+            // Get the user message from the request body
+            const { message } = req.body;
+
+            // Send the message to TogetherAI for processing
+            const response = await together.chat.completions.create({
+                messages: [{"role": "user", "content": message}],
+                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+            });
+
+            // Extract the AI response from the result
+            const aiResponse = response.choices[0].message.content;
+
+            // Send back the AI response to the frontend
+            res.status(200).json({ response: aiResponse });
+
+        } catch (error) {
+            console.error('Error with Together API:', error);
+            res.status(500).json({ error: 'Failed to get response from Together API' });
+        }
+    } else {
+        // If it's not a POST request, respond with 405 (Method Not Allowed)
+        res.status(405).json({ error: 'Method Not Allowed' });
+    }
+}
 
 const world = loadWorld('../Saves/YourWorld_L1js.json');
 const kingdom = world['kingdoms']['Sunshine Kingdom'];

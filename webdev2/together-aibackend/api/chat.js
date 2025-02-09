@@ -1,6 +1,6 @@
 import Together from "together-ai"; // Import the TogetherAI package
 import cors from "cors"; //
-import { loadWorld, saveWorld } from './helpers.js';
+import { loadWorld, saveWorld } from '../utils/helpers.js';
 
 
 
