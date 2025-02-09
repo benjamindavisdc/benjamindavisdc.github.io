@@ -1,5 +1,8 @@
 import Together from "together-ai"; // Import the TogetherAI package
 import cors from "cors"; //
+import { loadWorld, saveWorld } from './helpers.js';
+
+
 
 const together = new Together(); // Initialize TogetherAI
 
@@ -20,7 +23,7 @@ export default async function handler(req, res) {
             // Send the message to TogetherAI for processing
             const response = await together.chat.completions.create({
                 messages: [{"role": "user", "content": message}],
-                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+                model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
             });
 
             // Extract the AI response from the result
