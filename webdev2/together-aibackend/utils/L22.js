@@ -23,7 +23,7 @@ const corsOptions = {
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 // Load initial game state
 const world = load_world('../Saves/Willowbrook2.json');
@@ -60,25 +60,26 @@ const game_state = {
 };
 
 // Endpoint to start the game
-app.post('/start-game', async (req, res) => {
-  try {
-    game_state.start = await generate_start();
-    save_world(world, '../Saves/Willowbrook2.json'); // Save updated world state
-    res.status(200).json({ start: game_state.start });
-  } catch (error) {
-    console.error('Error generating game start:', error);
-    res.status(500).json({ error: 'Failed to start game.' });
-  }
-});
-
-// Main action loop endpoint
-app.post('/action', async (req, res) => {
-  try {
-    const { message, history } = req.body;
-
-    if (!message) {
-      return res.status(400).json({ error: 'Message is required.' });
+app.post('/start-game', cors(corsOptions), async (req, res) => {
+    try {
+      game_state.start = await generate_start();
+      save_world(world, '../Saves/Willowbrook2.json'); // Save updated world state
+      res.status(200).json({ start: game_state.start });
+    } catch (error) {
+      console.error('Error generating game start:', error);
+      res.status(500).json({ error: 'Failed to start game.' });
     }
+  });
+  
+  // Main action loop endpoint
+  app.post('/action', cors(corsOptions), async (req, res) => {
+    try {
+      const { message, history } = req.body;
+  
+      if (!message) {
+        return res.status(400).json({ error: 'Message is required.' });
+      }
+
 
     const system_prompt = `You are an AI Game master. Your job is to write what happens next in a player's adventure game. Instructions: You must only write 1-3 sentences in response. Always write in second person present tense.`;
 
@@ -109,3 +110,12 @@ app.post('/action', async (req, res) => {
     res.status(500).json({ error: 'Failed to process action.' });
   }
 });
+// Export handler for serverless function
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    // Handle preflight request
+    res.status(200).end();
+  } else {
+    app(req, res); // Process the request with Express handler
+  }
+}
