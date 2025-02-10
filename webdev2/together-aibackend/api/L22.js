@@ -2,7 +2,6 @@ import express from 'express';
 import Together from 'together-ai';
 import dotenv from 'dotenv';
 import { load_world, save_world } from '../utils/helpers.js';
-import { get_together_api_key } from '../utils/helpers.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -11,11 +10,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json()); // Parse incoming JSON requests
 
-const api_key = process.env.TOGETHER_API_KEY || get_together_api_key();
-if (!api_key) {
-  throw new Error("API key not found. Check your .env file.");
-}
-const client = new Together({ apiKey: api_key });
+
+const client = new Together(); // Initialize TogetherAI
+
 
 // CORS configuration
 const corsOptions = {
