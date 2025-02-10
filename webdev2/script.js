@@ -31,7 +31,7 @@ function takeDamage(damage){
 // Function to send message to backend
 async function sendMessageToBackend(userMessage) {
     try {
-        const response = await fetch('https://together-aibackend-one.vercel.app/api/L22.js', {
+        const response = await fetch('https://together-aibackend-one.vercel.app/api/chat.js', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
