@@ -60,7 +60,7 @@ const game_state = {
 app.post('/start-game', cors(corsOptions), async (req, res) => {
     try {
       game_state.start = await generate_start();
-      save_world(world, '../Saves/Willowbrook2.json'); // Save updated world state
+      save_world(world, '../Public/Saves/Willowbrook2.json'); // Save updated world state
       res.status(200).json({ start: game_state.start });
     } catch (error) {
       console.error('Error generating game start:', error);
