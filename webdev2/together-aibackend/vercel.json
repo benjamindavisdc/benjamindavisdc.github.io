@@ -12,8 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/api/L22",
-      "dest": "/api/L22.js"
+      "src": "/api/chat",
+      "dest": "/api/chat.js"
     },
     {
       "src": "/",
