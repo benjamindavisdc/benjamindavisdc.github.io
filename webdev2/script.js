@@ -31,7 +31,7 @@ function takeDamage(damage){
 // Function to send message to backend
 async function sendMessageToBackend(userMessage) {
     try {
-        const response = await fetch('https://togetherai-backend.vercel.app/api/chat.js', {
+        const response = await fetch('https://togetherai-backend.vercel.app/utils/L22.js', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ async function sendMessageToBackend(userMessage) {
         console.log("Response from backend:", data);  // Add a log here to see the response
 
         if (data.response) {
-            outPutText += `<p><strong>AI:</strong> ${data.response}</p>`;
+            outPutText += `\t<p><strong>AI:</strong> ${data.response}</p>`;
             updateChatWindow();
         } else {
             console.error('Error:', data.error);
@@ -58,7 +58,7 @@ async function sendMessageToBackend(userMessage) {
 function updateChatWindow() {
     const game = document.getElementById('content');
     game.innerHTML = outPutText;
-    game.scrollTop = game.scrollHeight; // Scroll to the bottom of the chat window
+    //game.scrollTop = game.scrollHeight; // Scroll to the bottom of the chat window
 }
 
 // Appends text entries

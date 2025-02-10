@@ -1,10 +1,19 @@
 import Together from "together-ai"; // Import the TogetherAI package
 import cors from "cors"; //
-import { loadWorld, saveWorld } from '../utils/helpers.js';
+import { load_world, saveWorld } from '../utils/helpers.js';
+import { getTogetherApiKey } from '../utils/helpers.js';
+import dotenv from "dotenv"
 
 
+dotenv.config();
 
-const together = new Together(); // Initialize TogetherAI
+const apiKey = process.env.TOGETHER_API_KEY;
+
+if (!apiKey) {
+    throw new Error("API key not found. Check your .env file.");
+}
+
+const together = new Together({ apiKey });
 
 const corsOptions = {
     origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
@@ -27,7 +36,8 @@ export default async function handler(req, res) {
             });
 
             // Extract the AI response from the result
-            const aiResponse = response.choices[0].message.content;
+            //const aiResponse = response.choices[0].message.content;
+            const aiResponse = response?.choices?.[0]?.message?.content || "No response received."; //runs when there's no input
 
             // Send back the AI response to the frontend
             res.status(200).json({ response: aiResponse });

@@ -13,7 +13,7 @@ function saveWorld(world, filename) {
 }
 
 // Load the world object from a file
-function loadWorld(filename) {
+function load_world(filename) {
     const data = fs.readFileSync(filename, 'utf8');
     return JSON.parse(data);
 }
@@ -25,4 +25,4 @@ function getTogetherApiKey() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, saveWorld, loadWorld, getTogetherApiKey };
+export { loadEnv, saveWorld, load_world, getTogetherApiKey };

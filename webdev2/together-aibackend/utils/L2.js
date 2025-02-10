@@ -1,5 +1,5 @@
 import Together from 'together-ai';
-import { loadWorld, saveWorld } from './helpers.js';
+import { load_world, saveWorld } from './helpers.js';
 import { getTogetherApiKey } from './helpers.js';
 import cors from "cors"; //
 
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     }
 }
 
-const world = loadWorld('../Saves/YourWorld_L1js.json');
+const world = load_world('../Saves/YourWorld_L1js.json');
 const kingdom = world['kingdoms']['Sunshine Kingdom'];
 const town = kingdom['towns']['Mistwood'];
 const character = town['npcs']['Sir Bumble'];
