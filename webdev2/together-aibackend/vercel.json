@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/L22.js",
+      "src": "api/chat.js",
       "use": "@vercel/node"
     },
     {
