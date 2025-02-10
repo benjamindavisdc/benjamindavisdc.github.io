@@ -8,7 +8,7 @@ function loadEnv() {
 }
 
 // Save the world object to a file
-function saveWorld(world, filename) {
+function save_world(world, filename) {
     fs.writeFileSync(filename, JSON.stringify(world, null, 2), 'utf8');
 }
 
@@ -25,4 +25,4 @@ function getTogetherApiKey() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, saveWorld, load_world, getTogetherApiKey };
+export { loadEnv, save_world, load_world, getTogetherApiKey };
