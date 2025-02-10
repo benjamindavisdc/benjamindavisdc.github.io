@@ -23,7 +23,7 @@ const corsOptions = {
 //app.use(cors(corsOptions));
 
 // Load initial game state
-const world = load_world('../Saves/Willowbrook2.json');
+const world = load_world('./public/Saves/Willowbrook2.json');
 const kingdom = world['kingdoms']['Sunshine Kingdom'];
 const town = kingdom['towns']['Mistwood'];
 const character = town['npcs']['Sir Bumble'];
@@ -60,7 +60,7 @@ const game_state = {
 app.post('/start-game', cors(corsOptions), async (req, res) => {
     try {
       game_state.start = await generate_start();
-      save_world(world, '../Public/Saves/Willowbrook2.json'); // Save updated world state
+      save_world(world, './public/Saves/Willowbrook2.json'); // Save updated world state
       res.status(200).json({ start: game_state.start });
     } catch (error) {
       console.error('Error generating game start:', error);
