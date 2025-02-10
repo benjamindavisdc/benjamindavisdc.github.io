@@ -3,6 +3,7 @@ import Together from 'together-ai';
 import dotenv from 'dotenv';
 import { load_world, save_world } from '../utils/helpers.js';
 import { get_together_api_key } from '../utils/helpers.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -16,13 +17,13 @@ if (!api_key) {
 }
 const client = new Together({ apiKey: api_key });
 
-// Allow CORS for your frontend
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://benjamindavisdc.github.io');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// CORS configuration
+const corsOptions = {
+  origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+app.use(cors(corsOptions));
 
 // Load initial game state
 const world = load_world('../Saves/Willowbrook2.json');
@@ -97,7 +98,7 @@ app.post('/action', async (req, res) => {
     messages.push({ role: "user", content: message });
 
     const model_output = await client.chat.completions.create({
-      model: "meta-llama/Llama-3-70b-chat-hf",
+      model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
       messages: messages
     });
 
