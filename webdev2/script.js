@@ -54,7 +54,7 @@ function takeDamage(damage){
 // }
 
 async function startGame() {
-    const response = await fetch("https://together-aibackend.vercel.app/api/chat.js", {
+    const response = await fetch("https://together-aibackend.vercel.app/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
