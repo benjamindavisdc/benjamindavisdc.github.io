@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI RPG</title>
+</head>
+<body>
+    <h1>Welcome to the AI RPG</h1>
+    <textarea id="chatbox" rows="10" cols="50" placeholder="Type 'start game' to begin"></textarea>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="sendMessage()">Send</button>
+    <div id="output"></div>
+
+    <script>
+        async function startGame() {
+            const response = await fetch("/game/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            });
+    
+            const result = await response.json();
+            document.getElementById("output").innerText = result.start;
+        }
+    
+        async function sendMessage() {
+            const message = document.getElementById("chatbox").value;
+            const response = await fetch("/game/action", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message, history: [] }),
+            });
+    
+            const result = await response.json();
+            document.getElementById("output").innerText = result.result;
+        }
+    </script>
+</body>
+</html>

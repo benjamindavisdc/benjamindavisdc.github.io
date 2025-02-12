@@ -1,38 +1,29 @@
-import cors from "cors";
 import express from 'express';
 import Together from 'together-ai';
 import bodyParser from 'body-parser';
 import dotenv from "dotenv";
 dotenv.config();
+import path from "path";
+import { fileURLToPath } from "url";
 
-import { load_world } from '../utils/helpers.js';
-
+import { load_world, load_remote_world, save_world } from '../utils/helpers.js';
 
 
 const app = express();
-// const PORT = 3000;
-
-
-const corsOptions = {
-    origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-};
-
-app.use(cors(corsOptions));
+const PORT = 3000;
 
 app.use(bodyParser.json());
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// // Serve static files (HTML, CSS, etc.) from two levels up
-// app.use(express.static(path.join(__dirname, "../../"))); 
+// Serve static files (HTML, CSS, etc.) from two levels up
+app.use(express.static(path.join(__dirname, "../../"))); 
 
-// // Serve the webdev2.html file when accessing "/"
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../../webdev2.html"));
-// });
+// Serve the webdev2.html file when accessing "/"
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../webdev2.html"));
+});
 
 const togetherClient = new Together({ apiKey: process.env.TOGETHER_API_KEY });
 
@@ -138,6 +129,13 @@ async function runAction(message, history) {
         throw new Error("No choices received from LLM");
       }
 
+      if (!message || typeof message !== 'string') {
+        return res.json({ result: "Error: Invalid message." });
+      }
+      
+      if (!Array.isArray(history)) {
+        return res.json({ result: "Error: Invalid history." });
+      }
       
   
       return response.choices[0].message.content;
@@ -161,5 +159,3 @@ app.post("/game/action", async (req, res) => {
 // app.listen(PORT, () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
-export default app;

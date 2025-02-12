@@ -18,6 +18,18 @@ function load_world(filename) {
     return JSON.parse(data);
 }
 
+async function load_remote_world(url){
+    try {
+        const reponse = await fetch(url);
+        if (!reponse.ok){
+            throw new Error(`Failed to fetch from ${url}`);
+        }
+        const data = await response.text();
+        return JSON.parse(data)
+    } catch (error){
+        console.error(`Error loading world:`, error)
+    }
+}
 // Get the Together API key from environment variables
 function getTogetherApiKey() {
     loadEnv();
@@ -25,4 +37,4 @@ function getTogetherApiKey() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, save_world, load_world, getTogetherApiKey };
+export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey };

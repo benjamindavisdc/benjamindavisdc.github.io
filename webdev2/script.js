@@ -29,39 +29,65 @@ function takeDamage(damage){
 
 
 // Function to send message to backend
-async function sendMessageToBackend(userMessage) {
-    try {
-        const response = await fetch('https://together-aibackend-one.vercel.app/api/chat.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: userMessage }),
-        });
+// async function sendMessageToBackend(userMessage) {
+//     try {
+//         const response = await fetch('https://together-aibackend-one.vercel.app/api/chat.js', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ message: userMessage }),
+//         });
 
-        const data = await response.json();
-        console.log("Response from backend:", data);  // Add a log here to see the response
+//         const data = await response.json();
+//         console.log("Response from backend:", data);  // Add a log here to see the response
 
-        if (data.response) {
-            outPutText += `\t<p><strong>AI:</strong> ${data.response}</p>`;
-            updateChatWindow();
-        } else {
-            console.error('Error:', data.error);
-        }
-    } catch (error) {
-        console.error('Error sending message:', error);
-    }
+//         if (data.response) {
+//             outPutText += `\t<p><strong>AI:</strong> ${data.response}</p>`;
+//             updateChatWindow();
+//         } else {
+//             console.error('Error:', data.error);
+//         }
+//     } catch (error) {
+//         console.error('Error sending message:', error);
+//     }
+// }
+
+async function startGame() {
+    const response = await fetch("/game/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+    });
+
+    const result = await response.json();
+    outPutText += `<p> ${result.start}</p>`;
+    
+    updateChatWindow();
+    //document.getElementById("content").innerText = result.start;
 }
 
+async function sendMessage(userMessage) {
+    const message = document.getElementById("theForm").value;
+    const response = await fetch("/game/action", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message:userMessage, history: [] }),
+    });
+
+    const result = await response.json();
+    outPutText += `<p><strong>AI:</strong> ${result.result}</p>`;
+    updateChatWindow()
+    //document.getElementById("content").innerText = result.result;
+}
 
 // Function to update the chat window
 function updateChatWindow() {
     const game = document.getElementById('content');
     game.innerHTML = outPutText;
-    //game.scrollTop = game.scrollHeight; // Scroll to the bottom of the chat window
+    game.scrollTop = game.scrollHeight; // Scroll to the bottom of the chat window
 }
 
-// Appends text entries
+//Appends text entries
 document.getElementById('theForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
 
@@ -74,12 +100,19 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
         updateChatWindow(); // Update the chat window with the new message
 
         // Send user message to the backend
-        sendMessageToBackend(newText);
+        sendMessage(newText);
         
         textInput.value = ''; // Clear the input field
     }
 });
-            
+
+// document.getElementById('theForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     sendMessage() // Prevent form submission
+//   })
+
+
+
             //TOP SCREEN MODAL MENUS
 
             const modal_background = document.getElementById("modal-background");
@@ -371,11 +404,13 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
                     document.getElementById('modal-text-7').classList.add('codeon')
             });
 
+            // document.getElementById("submit_button").addEventListener("click", () =>{
+            // sendMessage();
+            // })
 
                 //get the value of the prompt initialized, then set the value to your message.
             document.getElementById("fight_button_1").addEventListener("click", () =>{
-                const treeButton = document.getElementById("thePrompt")
-                treeButton.value = "";
+            startGame();
             })
             
             document.getElementById("fight_button_2").addEventListener("click", () =>{
