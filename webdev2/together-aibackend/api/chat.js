@@ -14,14 +14,16 @@ const app = express();
 
 
 const corsOptions = {
-    origin: '*', // Your frontend's URL
+    origin: true, // Your frontend's URL
+    credentials: true,
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
 };
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions))
-
+app.options("/api/chat/start", cors(corsOptions));
+app.options("/api/chat/action", cors(corsOptions));
 
 
 app.use(bodyParser.json());
@@ -37,7 +39,13 @@ app.use(bodyParser.json());
 //   res.sendFile(path.join(__dirname, "../../webdev2.html"));
 // });
 
-const togetherClient = new Together({ apiKey: process.env.TOGETHER_API_KEY });
+const apiKey = process.env.TOGETHER_API_KEY;
+
+if (!apiKey) {
+    throw new Error("API key not found. Check your .env file.");
+}
+
+const together = new Together({ apiKey });
 
 let gameState = {};
 
