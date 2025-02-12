@@ -19,6 +19,5 @@
       "src": "/",
       "dest": "/public/index.html"
     }
-  ],
-  "type": "module"
+  ]
 }
