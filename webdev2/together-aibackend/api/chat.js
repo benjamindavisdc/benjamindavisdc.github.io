@@ -150,13 +150,13 @@ async function runAction(message, history) {
 
 
 
-app.post("/game/start", async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   await setupGameState();
   await generateStart();
   res.json({ message: "Game started", start: gameState.start });
 });
 
-app.post("/game/action", async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   const { message, history } = req.body;
   const result = await runAction(message, history);
   res.json({ result });
