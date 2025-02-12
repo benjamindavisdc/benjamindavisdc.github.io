@@ -10,14 +10,15 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+"routes": [
     {
-      "src": "/api/chat",
-      "dest": "/api/chat.js"
-    },
-    {
-      "src": "/",
-      "dest": "/public/index.html"
-    }
-  ]
-}
+        "src": "/(.*)",
+        "dest": "api/chat.js",
+        "methods": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS"
+]}]}
