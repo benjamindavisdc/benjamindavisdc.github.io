@@ -45,7 +45,7 @@ if (!apiKey) {
     throw new Error("API key not found. Check your .env file.");
 }
 
-const together = new Together({ apiKey });
+const togetherClient = new Together({ apiKey });
 
 let gameState = {};
 
