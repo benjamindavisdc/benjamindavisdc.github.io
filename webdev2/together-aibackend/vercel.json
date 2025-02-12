@@ -14,11 +14,11 @@
     {
       "src": "/api/chat",
       "dest": "/api/chat"
-      
     },
     {
       "src": "/",
       "dest": "/public/index.html"
     }
-  ]
+  ],
+  "type": "module"
 }

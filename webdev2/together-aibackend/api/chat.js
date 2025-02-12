@@ -21,10 +21,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-if (req.method === 'OPTIONS') {
-  res.status(200).end(); // Respond to preflight with a successful status
-  return;
-}
 
 // Handle POST/GET request here
 if (req.method === 'POST') {
@@ -33,8 +29,9 @@ if (req.method === 'POST') {
   res.status(200).json({ message: 'Success', data });
 } else {
   res.status(405).json({ message: 'Method Not Allowed' });
-};
+}
 
+;
 app.use(bodyParser.json());
 
 // const __filename = fileURLToPath(import.meta.url);
@@ -164,16 +161,12 @@ async function runAction(message, history) {
 
 
 
-app.post("/api/chat", async (req, res) => {
-  await setupGameState();
-  await generateStart();
-  res.json({ message: "Game started", start: gameState.start });
-});
-
-app.post("/api/chat", async (req, res) => {
-  const { message, history } = req.body;
-  const result = await runAction(message, history);
-  res.json({ result });
+  app.post("/api/chat", async (req, res) => {
+    await setupGameState();
+    await generateStart();
+    const { message, history } = req.body;
+    const result = await runAction(message, history);
+    res.json({ start: gameState.start, result });
 });
 
 // app.listen(PORT, () => {
