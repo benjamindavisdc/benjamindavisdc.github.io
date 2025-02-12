@@ -22,16 +22,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Handle POST/GET request here
-if (req.method === 'POST') {
-  const data = req.body; // Handle your request and interact with LLM
-  // Process the request and send response
-  res.status(200).json({ message: 'Success', data });
-} else {
-  res.status(405).json({ message: 'Method Not Allowed' });
-}
 
-;
 app.use(bodyParser.json());
 
 // const __filename = fileURLToPath(import.meta.url);
