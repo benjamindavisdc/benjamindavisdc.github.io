@@ -14,7 +14,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin: 'https://benjamindavisdc.github.io', // Your frontend's URL
+    origin: 'https://benjamindavisdc.github.io/webdev2/webdev2.html', // Your frontend's URL
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
 };
