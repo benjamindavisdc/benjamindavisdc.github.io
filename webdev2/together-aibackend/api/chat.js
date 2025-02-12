@@ -15,11 +15,25 @@ const app = express();
 
 const corsOptions = {
     origin: '*', // Your frontend's URL
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
 };
 
 app.use(cors(corsOptions));
+
+if (req.method === 'OPTIONS') {
+  res.status(200).end(); // Respond to preflight with a successful status
+  return;
+}
+
+// Handle POST/GET request here
+if (req.method === 'POST') {
+  const data = req.body; // Handle your request and interact with LLM
+  // Process the request and send response
+  res.status(200).json({ message: 'Success', data });
+} else {
+  res.status(405).json({ message: 'Method Not Allowed' });
+};
 
 app.use(bodyParser.json());
 
