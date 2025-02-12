@@ -20,8 +20,8 @@ function load_world(filename) {
 
 async function load_remote_world(url){
     try {
-        const reponse = await fetch(url);
-        if (!reponse.ok){
+        const response = await fetch(url);
+        if (!response.ok){
             throw new Error(`Failed to fetch from ${url}`);
         }
         const data = await response.text();
