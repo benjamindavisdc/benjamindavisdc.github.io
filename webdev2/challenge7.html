@@ -2,20 +2,36 @@
 <body>
 
 <div id="description" class="description_paragraph">
-    <h4 style="text-align:left">Things to do:</h4>
+    <h4 style="text-align:left">New Features:</h4>
 <ul>
-    <li>Take Sir Bumble on different adventures</li>
-    <li>See the death screen</li>
-    <li>Read through the challenges at the top</li>
+    <li>The adventure is now running on an LLM!</li>
+    <li>Premade world context surrounding the adventures of Sir Bumble</li>
+    <li>Slight UI improvements</li>
 </ul>
+    <p>I was working through the AI games course and figured since it was showing me how to generate a game, I may as well connect it to my existing front end! It didn't seem like it would be too hard since all I had to do was change the end point from Gradio to my own site, but it ended up being way more complicated than I expected...
+    </p>
+    <p>At first I figured I could do a simple AI copy and paste, but quickly discovered I had no idea what I was looking at. So I stepped back and took a few days to read over "NodeJS: From Novice to Ninja", and within a few days I started to learn a few fundamental concepts which helped me to understand routers.</p>
+
+    <ol>I used Vercel for my backend deployment, and immediately ran into multiple problems:
+        <li>I found out Vercel only runs serverless functions, and I had to package all of my code inside of a single function which could run as the default export.</li>
+        <li>The code from the course wasn't exactly set up to fetch data from a cloud based file system, so I had to learn how Vercel backend filesystems were structured.</li>
+        <li>And I also ran into problems with permissions and the firewal, preventing me from running any tests over the web until it was solved.</li>
+
+    </ol> 
     <p>
-        This site is to help me learn and show my skills with Javascript. I came up with all the design concepts myself, and have limited myself to using only code that I've read about in my textbook, with only a couple of exceptions. I've primarily focused on learning the DOM, and event handling. Being able to manipulate modals and text outputs has been very exciting, it's way more fun than the static sites I have built in the past.
+        Apparently Vercel has some security features which make it necessary to specify which frontend domains it will accept requests from. I spent a lot of time trying to get that configured. I kept running into errors even though I was following everything from the documentation. After staying up until 3 am I finally realized I had my API key loaded improperly, and once that was fixed, it started working...
     </p>
     <p>
-    Creating the main text output window and the form input was the first thing I did. It gradually became more complex as I wanted it to accept a greater variety of text inputs. It appends text, summons the <s>travel screen and</s> death screen, and manipulates the character's HP. My if/else loops were becoming pretty unweildy so I changed the prompt processing code to a single switch case where each outcome ran a unique function. For the HP system, I created a custom function for each type of task your character can (unsuccessfully) attempt, as well as a takeDamage function which any of them can call on. This greatly simplified the prompt input functionality and made it feel much more modular.
+        The next problem I ran into was that Vercel doesn't like to serve static files, so I had to find out how to load my world JSON from my front end server, which required me to make a new function to load and parse the file. That wasn't too different from doing locally, except it now had to be async.
     </p>
     <p>
-        I am still struggling with loops and arrays, so a lot of my code is repeated (9 listeners for closing modals, 9 for showing) so my next step will be to refactor my code to be more concise and dynamic once I have read over the rest of the chapters for creating collections and looping over them.
+        I started running into all kinds of problems related to synchronizing my functions. It kept initializing the gamestate before my worldJSON was loading, and when I tried to move it from global scope to function scope, then I wasn't able to pass the values on to the next step.
+    </p>
+    <p>
+        I finally settled on initializing the variable globally, and then just changing its contents as it went along through the different functions. Success!
+    </p>
+    <p>
+        And so Sir Bumble was reborn, free to follow his dreams instead of following a premade path. 
     </p>
 </div>
 
