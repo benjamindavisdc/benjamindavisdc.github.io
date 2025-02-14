@@ -247,59 +247,59 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
 
 
 
-            //Challenge 1 Modal Text Input
-            fetch('challenge1.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game1 = document.getElementById('modal-text-1');
+            // //Challenge 1 Modal Text Input
+            // fetch('challenge1.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game1 = document.getElementById('modal-text-1');
 
-                    game1.innerText = data;
-            })
+            //         game1.innerText = data;
+            // })
 
-            //Challenge 2 Modal Text Input
-            fetch('challenge2.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game2 = document.getElementById('modal-text-2');
+            // //Challenge 2 Modal Text Input
+            // fetch('challenge2.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game2 = document.getElementById('modal-text-2');
 
-                    game2.innerText = data;
-            })
+            //         game2.innerText = data;
+            // })
 
-            //Challenge 3 Modal Text Input
-            fetch('challenge3.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game3 = document.getElementById('modal-text-3');
+            // //Challenge 3 Modal Text Input
+            // fetch('challenge3.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game3 = document.getElementById('modal-text-3');
 
-                    game3.innerText = data;
-            })
+            //         game3.innerText = data;
+            // })
 
-            //Challenge 4 Modal Text Input
-            fetch('challenge4.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game4 = document.getElementById('modal-text-4');
+            // //Challenge 4 Modal Text Input
+            // fetch('challenge4.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game4 = document.getElementById('modal-text-4');
 
-                    game4.innerHTML = data;
-            })
+            //         game4.innerHTML = data;
+            // })
 
-            //Challenge 5 Modal Text Input
-            fetch('challenge5.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game5 = document.getElementById('modal-text-5');
+            // //Challenge 5 Modal Text Input
+            // fetch('challenge5.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game5 = document.getElementById('modal-text-5');
 
-                    game5.innerText = data;
-            })
+            //         game5.innerText = data;
+            // })
 
-            //Challenge 6 Modal Text Input
-            fetch('challenge6.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game6 = document.getElementById('modal-text-6');
+            // //Challenge 6 Modal Text Input
+            // fetch('challenge6.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game6 = document.getElementById('modal-text-6');
 
-                    game6.innerHTML = data;
-            })
+            //         game6.innerHTML = data;
+            // })
 
             //Challenge 7 Modal Text Input
             fetch('challenge7.html')
@@ -310,14 +310,14 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
                     game7.innerHTML = data;
             })
 
-            //Death Modal Text Input
-            fetch('death.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game_d = document.getElementById('modal-text-d');
+            // //Death Modal Text Input
+            // fetch('death.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game_d = document.getElementById('modal-text-d');
 
-                    game_d.innerHTML = data;
-            })
+            //         game_d.innerHTML = data;
+            // })
 
 
 
