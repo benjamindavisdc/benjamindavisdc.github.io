@@ -82,14 +82,17 @@ Write in present tense. For example "You stand at..."
 First describe the character and their backstory. 
 Then describe where they start and what they see around them.`;
 
-const worldInfo = `
-World: ${gameState.world}
-Kingdom: ${gameState.kingdom}
-Town: ${gameState.town}
-Your Character: ${gameState.character}`;
+
 
 async function generateStart() {
     try {
+
+      const worldInfo = `
+      World: ${gameState.world}
+      Kingdom: ${gameState.kingdom}
+      Town: ${gameState.town}
+      Your Character: ${gameState.character}`;
+
       const response = await togetherClient.chat.completions.create({
         model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
         temperature: 1.0,
