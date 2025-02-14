@@ -115,22 +115,22 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
 
             //TOP SCREEN MODAL MENUS
 
-            const modal_background = document.getElementById("modal-background");
-            const modal_background2 = document.getElementById("modal-background2");
-            const modal_background3 = document.getElementById("modal-background3");
-            const modal_background4 = document.getElementById("modal-background4");
-            const modal_background5 = document.getElementById("modal-background5");
-            const modal_background6 = document.getElementById("modal-background6");
+            // const modal_background = document.getElementById("modal-background");
+            // const modal_background2 = document.getElementById("modal-background2");
+            // const modal_background3 = document.getElementById("modal-background3");
+            // const modal_background4 = document.getElementById("modal-background4");
+            // const modal_background5 = document.getElementById("modal-background5");
+            // const modal_background6 = document.getElementById("modal-background6");
             const modal_background7 = document.getElementById("modal-background7");
-            const modal_background_d = document.getElementById("modal-background-d");
+            // const modal_background_d = document.getElementById("modal-background-d");
 
             const buttons = [
-                document.getElementById("button_challenge_1"),
-                document.getElementById("button_challenge_2"),
-                document.getElementById("button_challenge_3"),
-                document.getElementById("button_challenge_4"),
-                document.getElementById("button_challenge_5"),
-                document.getElementById("button_challenge_6"),
+                // document.getElementById("button_challenge_1"),
+                // document.getElementById("button_challenge_2"),
+                // document.getElementById("button_challenge_3"),
+                // document.getElementById("button_challenge_4"),
+                // document.getElementById("button_challenge_5"),
+                // document.getElementById("button_challenge_6"),
                 document.getElementById("button_challenge_7")
             ];
 
@@ -144,105 +144,105 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             const button_challenge_6 = document.getElementById("button_challenge_6");
             const button_challenge_7 = document.getElementById("button_challenge_7");
             */
-            const modal_close = document.getElementById("close");
-            const modal_close2 = document.getElementById("close2");
-            const modal_close3 = document.getElementById("close3");
-            const modal_close4 = document.getElementById("close4");
-            const modal_close5 = document.getElementById("close5");
-            const modal_close6 = document.getElementById("close6");
+            // const modal_close = document.getElementById("close");
+            // const modal_close2 = document.getElementById("close2");
+            // const modal_close3 = document.getElementById("close3");
+            // const modal_close4 = document.getElementById("close4");
+            // const modal_close5 = document.getElementById("close5");
+            // const modal_close6 = document.getElementById("close6");
             const modal_close7 = document.getElementById("close7");
-            const modal_closed = document.getElementById("closed");
+            // const modal_closed = document.getElementById("closed");
             
                 /*Try adding a loop here later to reduce redundancy */
 
                 //click the buttons to open Modal
-            button_challenge_1.addEventListener("click",() => {
-                modal_background.style.display = "block";
-            });
-            button_challenge_2.addEventListener("click",() => {
-                modal_background2.style.display = "block";
-            });
-            button_challenge_3.addEventListener("click",() => {
-                modal_background3.style.display = "block";
-            });
-            button_challenge_4.addEventListener("click",() => {
-                modal_background4.style.display = "block";
-            });
-            button_challenge_5.addEventListener("click",() => {
-                modal_background5.style.display = "block";
-            });
-            button_challenge_6.addEventListener("click",() => {
-                modal_background6.style.display = "block";
-            });
+            // button_challenge_1.addEventListener("click",() => {
+            //     modal_background.style.display = "block";
+            // });
+            // button_challenge_2.addEventListener("click",() => {
+            //     modal_background2.style.display = "block";
+            // });
+            // button_challenge_3.addEventListener("click",() => {
+            //     modal_background3.style.display = "block";
+            // });
+            // button_challenge_4.addEventListener("click",() => {
+            //     modal_background4.style.display = "block";
+            // });
+            // button_challenge_5.addEventListener("click",() => {
+            //     modal_background5.style.display = "block";
+            // });
+            // button_challenge_6.addEventListener("click",() => {
+            //     modal_background6.style.display = "block";
+            // });
             button_challenge_7.addEventListener("click",() => {
                 modal_background7.style.display = "block";
             });
                 
-            modal_close.addEventListener("click",() => {
-                modal_background.style.display = "none";
-            });
-            modal_close2.addEventListener("click",() => {
-                modal_background2.style.display = "none";
-            });
-            modal_close3.addEventListener("click",() => {
-                modal_background3.style.display = "none";
-            });
-            modal_close4.addEventListener("click",() => {
-                modal_background4.style.display = "none";
-            });
-            modal_close5.addEventListener("click",() => {
-                modal_background5.style.display = "none";
-            });
-            modal_close6.addEventListener("click",() => {
-                modal_background6.style.display = "none";
-            });
+            // modal_close.addEventListener("click",() => {
+            //     modal_background.style.display = "none";
+            // });
+            // modal_close2.addEventListener("click",() => {
+            //     modal_background2.style.display = "none";
+            // });
+            // modal_close3.addEventListener("click",() => {
+            //     modal_background3.style.display = "none";
+            // });
+            // modal_close4.addEventListener("click",() => {
+            //     modal_background4.style.display = "none";
+            // });
+            // modal_close5.addEventListener("click",() => {
+            //     modal_background5.style.display = "none";
+            // });
+            // modal_close6.addEventListener("click",() => {
+            //     modal_background6.style.display = "none";
+            // });
             modal_close7.addEventListener("click",() => {
                 modal_background7.style.display = "none";
             });
-            modal_closed.addEventListener("click",() => {
-                modal_background_d.style.display = "none";
-            });
+            // modal_closed.addEventListener("click",() => {
+            //     modal_background_d.style.display = "none";
+            // });
 
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background) {
-                    modal_background.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background) {
+            //         modal_background.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background2) {
-                    modal_background2.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background2) {
+            //         modal_background2.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background3) {
-                    modal_background3.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background3) {
+            //         modal_background3.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background4) {
-                    modal_background4.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background4) {
+            //         modal_background4.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background5) {
-                    modal_background5.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background5) {
+            //         modal_background5.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background6) {
-                    modal_background6.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background6) {
+            //         modal_background6.style.display = "none";
+            //     }});
 
             window.addEventListener("click", (event) => {
                 if (event.target === modal_background7) {
                     modal_background7.style.display = "none";
                 }});
             
-                window.addEventListener("click", (event) => {
-                if (event.target === modal_background_d) {
-                    modal_background_d.style.display = "none";
-                }});
+                // window.addEventListener("click", (event) => {
+                // if (event.target === modal_background_d) {
+                //     modal_background_d.style.display = "none";
+                // }});
 
 
 
