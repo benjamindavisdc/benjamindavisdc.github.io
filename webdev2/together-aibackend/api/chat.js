@@ -98,8 +98,9 @@ async function generateStart() {
           { role: "user", content: worldInfo + "\nYour Start:" },
         ],
       });
-  
-      console.log("LLM Response:", response);
+      
+      console.log(worldInfo);
+      //console.log("LLM Response:", response);
   
       if (!response.choices || response.choices.length === 0) {
         throw new Error("No choices received from LLM");
