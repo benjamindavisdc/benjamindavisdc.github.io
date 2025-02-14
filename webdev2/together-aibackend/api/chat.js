@@ -47,7 +47,9 @@ if (!apiKey) {
 
 const togetherClient = new Together({ apiKey });
 
-let gameState = {};
+let gameState = {
+  worldInfo: null,
+};
 
 async function setupGameState() {
     try {
@@ -64,6 +66,12 @@ async function setupGameState() {
             character: character.description,
             start: "", // Start will be populated dynamically
         };
+
+        gameState.worldInfo = `
+        World: ${gameState.world}
+        Kingdom: ${gameState.kingdom}
+        Town: ${gameState.town}
+        Your Character: ${gameState.character}`;
 
         //console.log(gameState); // or whatever you want to do with gameState
     } catch (error) {
@@ -87,22 +95,22 @@ Then describe where they start and what they see around them.`;
 async function generateStart() {
     try {
 
-      const worldInfo = `
-      World: ${gameState.world}
-      Kingdom: ${gameState.kingdom}
-      Town: ${gameState.town}
-      Your Character: ${gameState.character}`;
+      // const worldInfo = `
+      // World: ${gameState.world}
+      // Kingdom: ${gameState.kingdom}
+      // Town: ${gameState.town}
+      // Your Character: ${gameState.character}`;
 
       const response = await togetherClient.chat.completions.create({
         model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
         temperature: 1.0,
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: worldInfo + "\nYour Start:" },
+          { role: "user", content: gameState.worldInfo + "\nYour Start:" },
         ],
       });
       
-      console.log(worldInfo);
+      console.log("Generated World:", gameState.worldInfo);
       //console.log("LLM Response:", response);
   
       if (!response.choices || response.choices.length === 0) {
@@ -130,7 +138,7 @@ async function runAction(message, history) {
   
     let messages = [
       { role: "system", content: systemPrompt },
-      { role: "user", content: worldInfo },
+      { role: "user", content: gameState.worldInfo },
     ];
   
     history.forEach((action) => {
