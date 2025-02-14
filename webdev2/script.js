@@ -125,12 +125,12 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             const modal_background_d = document.getElementById("modal-background-d");
 
             const buttons = [
-                document.getElementById("button_challenge_1"),
-                document.getElementById("button_challenge_2"),
-                document.getElementById("button_challenge_3"),
-                document.getElementById("button_challenge_4"),
-                document.getElementById("button_challenge_5"),
-                document.getElementById("button_challenge_6"),
+                // document.getElementById("button_challenge_1"),
+                // document.getElementById("button_challenge_2"),
+                // document.getElementById("button_challenge_3"),
+                // document.getElementById("button_challenge_4"),
+                // document.getElementById("button_challenge_5"),
+                // document.getElementById("button_challenge_6"),
                 document.getElementById("button_challenge_7")
             ];
 
@@ -144,162 +144,162 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             const button_challenge_6 = document.getElementById("button_challenge_6");
             const button_challenge_7 = document.getElementById("button_challenge_7");
             */
-            const modal_close = document.getElementById("close");
-            const modal_close2 = document.getElementById("close2");
-            const modal_close3 = document.getElementById("close3");
-            const modal_close4 = document.getElementById("close4");
-            const modal_close5 = document.getElementById("close5");
-            const modal_close6 = document.getElementById("close6");
+            // const modal_close = document.getElementById("close");
+            // const modal_close2 = document.getElementById("close2");
+            // const modal_close3 = document.getElementById("close3");
+            // const modal_close4 = document.getElementById("close4");
+            // const modal_close5 = document.getElementById("close5");
+            // const modal_close6 = document.getElementById("close6");
             const modal_close7 = document.getElementById("close7");
-            const modal_closed = document.getElementById("closed");
+            // const modal_closed = document.getElementById("closed");
             
                 /*Try adding a loop here later to reduce redundancy */
 
                 //click the buttons to open Modal
-            button_challenge_1.addEventListener("click",() => {
-                modal_background.style.display = "block";
-            });
-            button_challenge_2.addEventListener("click",() => {
-                modal_background2.style.display = "block";
-            });
-            button_challenge_3.addEventListener("click",() => {
-                modal_background3.style.display = "block";
-            });
-            button_challenge_4.addEventListener("click",() => {
-                modal_background4.style.display = "block";
-            });
-            button_challenge_5.addEventListener("click",() => {
-                modal_background5.style.display = "block";
-            });
-            button_challenge_6.addEventListener("click",() => {
-                modal_background6.style.display = "block";
-            });
+            // button_challenge_1.addEventListener("click",() => {
+            //     modal_background.style.display = "block";
+            // });
+            // button_challenge_2.addEventListener("click",() => {
+            //     modal_background2.style.display = "block";
+            // });
+            // button_challenge_3.addEventListener("click",() => {
+            //     modal_background3.style.display = "block";
+            // });
+            // button_challenge_4.addEventListener("click",() => {
+            //     modal_background4.style.display = "block";
+            // });
+            // button_challenge_5.addEventListener("click",() => {
+            //     modal_background5.style.display = "block";
+            // });
+            // button_challenge_6.addEventListener("click",() => {
+            //     modal_background6.style.display = "block";
+            // });
             button_challenge_7.addEventListener("click",() => {
                 modal_background7.style.display = "block";
             });
                 
-            modal_close.addEventListener("click",() => {
-                modal_background.style.display = "none";
-            });
-            modal_close2.addEventListener("click",() => {
-                modal_background2.style.display = "none";
-            });
-            modal_close3.addEventListener("click",() => {
-                modal_background3.style.display = "none";
-            });
-            modal_close4.addEventListener("click",() => {
-                modal_background4.style.display = "none";
-            });
-            modal_close5.addEventListener("click",() => {
-                modal_background5.style.display = "none";
-            });
-            modal_close6.addEventListener("click",() => {
-                modal_background6.style.display = "none";
-            });
+            // modal_close.addEventListener("click",() => {
+            //     modal_background.style.display = "none";
+            // });
+            // modal_close2.addEventListener("click",() => {
+            //     modal_background2.style.display = "none";
+            // });
+            // modal_close3.addEventListener("click",() => {
+            //     modal_background3.style.display = "none";
+            // });
+            // modal_close4.addEventListener("click",() => {
+            //     modal_background4.style.display = "none";
+            // });
+            // modal_close5.addEventListener("click",() => {
+            //     modal_background5.style.display = "none";
+            // });
+            // modal_close6.addEventListener("click",() => {
+            //     modal_background6.style.display = "none";
+            // });
             modal_close7.addEventListener("click",() => {
                 modal_background7.style.display = "none";
             });
-            modal_closed.addEventListener("click",() => {
-                modal_background_d.style.display = "none";
-            });
+            // modal_closed.addEventListener("click",() => {
+            //     modal_background_d.style.display = "none";
+            // });
 
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background) {
-                    modal_background.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background) {
+            //         modal_background.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background2) {
-                    modal_background2.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background2) {
+            //         modal_background2.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background3) {
-                    modal_background3.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background3) {
+            //         modal_background3.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background4) {
-                    modal_background4.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background4) {
+            //         modal_background4.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background5) {
-                    modal_background5.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background5) {
+            //         modal_background5.style.display = "none";
+            //     }});
 
-            window.addEventListener("click", (event) => {
-                if (event.target === modal_background6) {
-                    modal_background6.style.display = "none";
-                }});
+            // window.addEventListener("click", (event) => {
+            //     if (event.target === modal_background6) {
+            //         modal_background6.style.display = "none";
+            //     }});
 
             window.addEventListener("click", (event) => {
                 if (event.target === modal_background7) {
                     modal_background7.style.display = "none";
                 }});
             
-                window.addEventListener("click", (event) => {
-                if (event.target === modal_background_d) {
-                    modal_background_d.style.display = "none";
-                }});
+                // window.addEventListener("click", (event) => {
+                // if (event.target === modal_background_d) {
+                //     modal_background_d.style.display = "none";
+                // }});
 
 
 
 
-            //Challenge 1 Modal Text Input
-            fetch('challenge1.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game1 = document.getElementById('modal-text-1');
+            // //Challenge 1 Modal Text Input
+            // fetch('challenge1.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game1 = document.getElementById('modal-text-1');
 
-                    game1.innerText = data;
-            })
+            //         game1.innerText = data;
+            // })
 
-            //Challenge 2 Modal Text Input
-            fetch('challenge2.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game2 = document.getElementById('modal-text-2');
+            // //Challenge 2 Modal Text Input
+            // fetch('challenge2.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game2 = document.getElementById('modal-text-2');
 
-                    game2.innerText = data;
-            })
+            //         game2.innerText = data;
+            // })
 
-            //Challenge 3 Modal Text Input
-            fetch('challenge3.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game3 = document.getElementById('modal-text-3');
+            // //Challenge 3 Modal Text Input
+            // fetch('challenge3.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game3 = document.getElementById('modal-text-3');
 
-                    game3.innerText = data;
-            })
+            //         game3.innerText = data;
+            // })
 
-            //Challenge 4 Modal Text Input
-            fetch('challenge4.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game4 = document.getElementById('modal-text-4');
+            // //Challenge 4 Modal Text Input
+            // fetch('challenge4.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game4 = document.getElementById('modal-text-4');
 
-                    game4.innerHTML = data;
-            })
+            //         game4.innerHTML = data;
+            // })
 
-            //Challenge 5 Modal Text Input
-            fetch('challenge5.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game5 = document.getElementById('modal-text-5');
+            // //Challenge 5 Modal Text Input
+            // fetch('challenge5.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game5 = document.getElementById('modal-text-5');
 
-                    game5.innerText = data;
-            })
+            //         game5.innerText = data;
+            // })
 
-            //Challenge 6 Modal Text Input
-            fetch('challenge6.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game6 = document.getElementById('modal-text-6');
+            // //Challenge 6 Modal Text Input
+            // fetch('challenge6.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game6 = document.getElementById('modal-text-6');
 
-                    game6.innerHTML = data;
-            })
+            //         game6.innerHTML = data;
+            // })
 
             //Challenge 7 Modal Text Input
             fetch('challenge7.html')
@@ -310,14 +310,14 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
                     game7.innerHTML = data;
             })
 
-            //Death Modal Text Input
-            fetch('death.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const game_d = document.getElementById('modal-text-d');
+            // //Death Modal Text Input
+            // fetch('death.txt')
+            //     .then(response => response.text())
+            //     .then(data => {
+            //         const game_d = document.getElementById('modal-text-d');
 
-                    game_d.innerHTML = data;
-            })
+            //         game_d.innerHTML = data;
+            // })
 
 
 
@@ -348,7 +348,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             htmlLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/webdev2.html')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/webdev2.html')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
@@ -368,7 +368,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             cssLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/css/style.css')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/css/style.css')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
@@ -388,7 +388,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             jsLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/script.js')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/script.js')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
