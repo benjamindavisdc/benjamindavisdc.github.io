@@ -65,7 +65,7 @@ async function setupGameState() {
             start: "", // Start will be populated dynamically
         };
 
-        console.log(gameState); // or whatever you want to do with gameState
+        //console.log(gameState); // or whatever you want to do with gameState
     } catch (error) {
         console.error('Error setting up game state:', error);
     }
@@ -99,7 +99,7 @@ async function generateStart() {
         ],
       });
   
-      //console.log("LLM Response:", response); // Debugging line
+      console.log("LLM Response:", response);
   
       if (!response.choices || response.choices.length === 0) {
         throw new Error("No choices received from LLM");
