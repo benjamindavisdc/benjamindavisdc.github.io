@@ -348,7 +348,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             htmlLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/webdev2.html')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/webdev2.html')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
@@ -368,7 +368,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             cssLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/css/style.css')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/css/style.css')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
@@ -388,7 +388,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             jsLink.addEventListener("click", (e) => {
                 e.preventDefault();
             
-                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev/script.js')
+                fetch('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/script.js')
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not OK");
