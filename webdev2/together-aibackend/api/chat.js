@@ -47,10 +47,6 @@ if (!apiKey) {
 
 const togetherClient = new Together({ apiKey });
 
-let gameState = {
-  worldInfo: null,
-};
-
 
 
 

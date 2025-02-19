@@ -36,7 +36,7 @@ function getTogetherApiKey() {
     return process.env.TOGETHER_API_KEY;
 }
 
-let gameState = {
+export let gameState = {
     worldInfo: null,
   };
 
