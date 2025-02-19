@@ -65,6 +65,7 @@ async function startGame() {
     updateChatWindow();
     //document.getElementById("content").innerText = result.start;
 }
+startGame();
 
 async function sendMessage(userMessage) {
     const message = document.getElementById("theForm").value;
