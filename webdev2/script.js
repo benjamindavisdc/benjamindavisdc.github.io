@@ -200,9 +200,9 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             modal_close7.addEventListener("click",() => {
                 modal_background7.style.display = "none";
             });
-            modal_closed.addEventListener("click",() => {
-                modal_background_d.style.display = "none";
-            });
+            // modal_closed.addEventListener("click",() => {
+            //     modal_background_d.style.display = "none";
+            // });
 
 
             // window.addEventListener("click", (event) => {
