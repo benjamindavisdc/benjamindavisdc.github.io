@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import dotenv from "dotenv";
 dotenv.config();
 
-import { load_remote_world } from '../utils/helpers.js';
+import { setupGameState } from '../utils/helpers.js';
 
 
 
@@ -51,33 +51,7 @@ let gameState = {
   worldInfo: null,
 };
 
-async function setupGameState() {
-    try {
-        const world = await load_remote_world('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/together-aibackend/public/Saves/Willowbrook2.json');
-        const kingdom = world['kingdoms']['Sunshine Kingdom'];
-        const town = kingdom['towns']['Mistwood'];
-        const character = town['npcs']['Sir Bumble'];
 
-        // Setup game state after all the data is loaded
-        gameState = {
-            world: world.description,
-            kingdom: kingdom.description,
-            town: town.description,
-            character: character.description,
-            start: "", // Start will be populated dynamically
-        };
-
-        gameState.worldInfo = `
-        World: ${gameState.world}
-        Kingdom: ${gameState.kingdom}
-        Town: ${gameState.town}
-        Your Character: ${gameState.character}`;
-
-        //console.log(gameState); // or whatever you want to do with gameState
-    } catch (error) {
-        console.error('Error setting up game state:', error);
-    }
-}
 
 
 const systemPrompt = `You are an AI Game master. Your job is to create a 
