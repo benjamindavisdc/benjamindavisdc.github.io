@@ -36,7 +36,7 @@ function getTogetherApiKey() {
     return process.env.TOGETHER_API_KEY;
 }
 
-export let gameState = {
+let gameState = {
     worldInfo: null,
   };
 
@@ -71,4 +71,4 @@ async function setupGameState() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState, gameState };
+export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState };
