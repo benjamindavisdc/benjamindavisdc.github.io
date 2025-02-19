@@ -58,6 +58,8 @@ async function setupGameState() {
         Town: ${gameState.town}
         Your Character: ${gameState.character}`;
 
+        return gameState;
+
         //console.log(gameState); // or whatever you want to do with gameState
     } catch (error) {
         console.error('Error setting up game state:', error);
