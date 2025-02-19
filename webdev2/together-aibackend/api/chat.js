@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import dotenv from "dotenv";
 dotenv.config();
 
-import { setupGameState } from '../utils/helpers.js';
+import { setupGameState, gameState } from '../utils/helpers.js';
 
 
 

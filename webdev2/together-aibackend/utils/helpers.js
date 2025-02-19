@@ -36,6 +36,10 @@ function getTogetherApiKey() {
     return process.env.TOGETHER_API_KEY;
 }
 
+let gameState = {
+    worldInfo: null,
+  };
+
 async function setupGameState() {
     try {
         const world = await load_remote_world('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/together-aibackend/public/Saves/Willowbrook2.json');
@@ -67,4 +71,4 @@ async function setupGameState() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState };
+export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState, gameState };
