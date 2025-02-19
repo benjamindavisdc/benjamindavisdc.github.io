@@ -123,7 +123,7 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             // const modal_background5 = document.getElementById("modal-background5");
             // const modal_background6 = document.getElementById("modal-background6");
             const modal_background7 = document.getElementById("modal-background7");
-            // const modal_background_d = document.getElementById("modal-background-d");
+            const modal_background_d = document.getElementById("modal-background-d");
 
             const buttons = [
                 // document.getElementById("button_challenge_1"),
@@ -200,9 +200,9 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
             modal_close7.addEventListener("click",() => {
                 modal_background7.style.display = "none";
             });
-            // modal_closed.addEventListener("click",() => {
-            //     modal_background_d.style.display = "none";
-            // });
+            modal_closed.addEventListener("click",() => {
+                modal_background_d.style.display = "none";
+            });
 
 
             // window.addEventListener("click", (event) => {
@@ -240,10 +240,10 @@ document.getElementById('theForm').addEventListener('submit', function(event) {
                     modal_background7.style.display = "none";
                 }});
             
-                // window.addEventListener("click", (event) => {
-                // if (event.target === modal_background_d) {
-                //     modal_background_d.style.display = "none";
-                // }});
+                window.addEventListener("click", (event) => {
+                if (event.target === modal_background_d) {
+                    modal_background_d.style.display = "none";
+                }});
 
 
 
