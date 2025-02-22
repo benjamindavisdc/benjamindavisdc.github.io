@@ -165,7 +165,7 @@ app.post("/api/chat/action", async (req, res) => {
   try {
       const { message, history } = req.body;
       const result = await runAction(message, history, gameState);
-      const itemUpdates = await detectInventoryChanges(gameState, output);
+      const itemUpdates = await detectInventoryChanges(gameState, result);
 
       const inventoryUpdateMsg = await updateInventory(gameState.inventory, itemUpdates);
       const finalResult = inventoryUpdateMsg ? `${result}\n${inventoryUpdateMsg}` : result;
