@@ -111,15 +111,30 @@ async function runAction(message, history, gameState) {
     Ex. (You look north and see...)
     Don't let the player use items they don't have in their inventory.`;
   
+    if (!message) {
+      console.error("Error: message is null or undefined");
+      return "Error: No message provided.";
+  }
+
+
     let messages = [
       { role: "system", content: systemPrompt },
       { role: "user", content: gameState.worldInfo },
     ];
   
-    history.forEach((action) => {
-      messages.push({ role: "assistant", content: action[0] });
-      messages.push({ role: "user", content: action[1] });
-    });
+    if (Array.isArray(history)) {
+      history.forEach((action) => {
+          if (action && Array.isArray(action) && action.length === 2) {
+              messages.push({ role: "assistant", content: action[0] });
+              messages.push({ role: "user", content: action[1] });
+          } else {
+              console.warn("Warning: Invalid history entry detected:", action);
+          }
+      });
+  } else {
+      console.warn("Warning: history is not an array:", history);
+  }
+  
   
     messages.push({ role: "user", content: message });
   
@@ -165,6 +180,14 @@ app.post("/api/chat/start", async (req, res) => {
 app.post("/api/chat/action", async (req, res) => {
   try {
       const { message, history } = req.body;
+
+      if (!message) {
+        return res.status(400).json({ error: "Missing message in request body" });
+    }
+    if (!Array.isArray(history)) {
+        return res.status(400).json({ error: "History must be an array" });
+    }
+
       const result = await runAction(message, history, gameState);
       const itemUpdates = await detectInventoryChanges(gameState, result);
 

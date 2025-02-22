@@ -80,58 +80,58 @@ async function updateInventory(inventory, itemUpdates) {
 
 
 
-async function runAction(message, history, gameState) {
-    if (message === 'start game') return gameState.start;
+// async function runAction(message, history, gameState) {
+//     if (message === 'start game') return gameState.start;
 
-    const systemPrompt = `You are an AI Game master. Your job is to write what \
-happens next in a player's adventure game.\
-Instructions: \
-You must only write 1-3 sentences in response.\
-Always write in second person present tense.\
-Ex. (You look north and see...)\
-Don't let the player use items they don't have in their inventory.`;
+//     const systemPrompt = `You are an AI Game master. Your job is to write what \
+// happens next in a player's adventure game.\
+// Instructions: \
+// You must only write 1-3 sentences in response.\
+// Always write in second person present tense.\
+// Ex. (You look north and see...)\
+// Don't let the player use items they don't have in their inventory.`;
 
-    const worldInfo = `\nWorld: ${gameState.world}\nKingdom: ${gameState.kingdom}\nTown: ${gameState.town}\nYour Character: ${gameState.character}\nInventory: ${JSON.stringify(gameState.inventory)}`;
+//     const worldInfo = `\nWorld: ${gameState.world}\nKingdom: ${gameState.kingdom}\nTown: ${gameState.town}\nYour Character: ${gameState.character}\nInventory: ${JSON.stringify(gameState.inventory)}`;
 
-    const messages = [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: worldInfo }
-    ];
+//     const messages = [
+//         { role: "system", content: systemPrompt },
+//         { role: "user", content: worldInfo }
+//     ];
     
-    for (const action of history) {
-        messages.push({ role: "assistant", content: action[0] });
-        messages.push({ role: "user", content: action[1] });
-    }
+//     for (const action of history) {
+//         messages.push({ role: "assistant", content: action[0] });
+//         messages.push({ role: "user", content: action[1] });
+//     }
     
-    messages.push({ role: "user", content: message });
+//     messages.push({ role: "user", content: message });
     
-    const modelOutput = await client.chat.completions.create({
-        model: "meta-llama/Llama-3-70b-chat-hf",
-        messages
-    });
+//     const modelOutput = await client.chat.completions.create({
+//         model: "meta-llama/Llama-3-70b-chat-hf",
+//         messages
+//     });
     
-    return modelOutput.choices[0].message.content;
-}
+//     return modelOutput.choices[0].message.content;
+// }
 
 
-async function mainLoop(message, history) {
-    const gameState = getGameState({
-        inventory: {
-            "cloth pants": 1,
-            "cloth shirt": 1,
-            "goggles": 1,
-            "leather bound journal": 1,
-            "gold": 5
-        }
-    });
+// async function mainLoop(message, history) {
+//     const gameState = getGameState({
+//         inventory: {
+//             "cloth pants": 1,
+//             "cloth shirt": 1,
+//             "goggles": 1,
+//             "leather bound journal": 1,
+//             "gold": 5
+//         }
+//     });
 
-    let output = await runAction(message, history, gameState);
-    if (!isSafe(output)) return 'Invalid Output';
+//     let output = await runAction(message, history, gameState);
+//     if (!isSafe(output)) return 'Invalid Output';
     
-    const itemUpdates = await detectInventoryChanges(gameState, output);
-    output += await updateInventory(gameState.inventory, itemUpdates);
+//     const itemUpdates = await detectInventoryChanges(gameState, output);
+//     output += await updateInventory(gameState.inventory, itemUpdates);
     
-    return output;
-}
+//     return output;
+// }
 
 // startGame(mainLoop, true);
