@@ -128,6 +128,7 @@ async function runAction(message, history, gameState) {
     try {
       const response = await togetherClient.chat.completions.create({
         model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+        temperature: 0.8,
         messages: messages,
       });
   

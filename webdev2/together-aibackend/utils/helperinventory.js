@@ -1,4 +1,14 @@
 
+import Together from 'together-ai';
+
+const apiKey = process.env.TOGETHER_API_KEY;
+
+if (!apiKey) {
+    throw new Error("API key not found. Check your .env file.");
+}
+
+const togetherClient = new Together({ apiKey });
+
 export {detectInventoryChanges, updateInventory}
 
 async function detectInventoryChanges(gameState, output) {
