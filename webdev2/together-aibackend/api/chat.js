@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { setupGameState, gameState } from '../utils/helpers.js';
-import { detectInventoryChanges, updateInventory } from '..utils/helperinventory.js';
+import { detectInventoryChanges, updateInventory } from '../utils/helperinventory.js';
 
 
 
