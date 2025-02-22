@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { setupGameState, gameState } from '../utils/helpers.js';
+import { detectInventoryChanges, updateInventory } from '..utils/helperinventory.js';
 
 
 
@@ -100,14 +101,15 @@ Then describe where they start and what they see around them.`;
 
 
 
-async function runAction(message, history) {
+async function runAction(message, history, gameState) {
   
     const systemPrompt = `You are an AI Game master. Your job is to write what 
     happens next in a player's adventure game.
     Instructions:
     You must only write 1-3 sentences in response.
     Always write in second person present tense.
-    Ex. (You look north and see...)`;
+    Ex. (You look north and see...)
+    Don't let the player use items they don't have in their inventory.`;
   
     let messages = [
       { role: "system", content: systemPrompt },
@@ -137,7 +139,8 @@ async function runAction(message, history) {
 
       
   
-      return response.choices[0].message.content;
+      let output = response.choices[0].message.content;
+      return output;
     } catch (error) {
       console.error("Error in runAction:", error);
       return "Error: Unable to process action.";
@@ -161,12 +164,15 @@ app.post("/api/chat/start", async (req, res) => {
 app.post("/api/chat/action", async (req, res) => {
   try {
       const { message, history } = req.body;
-      const result = await runAction(message, history);
+      const result = await runAction(message, history, gameState);
+      const itemUpdates = await detectInventoryChanges(gameState, output);
+      result += await updateInventory(gameState.inventory, itemUpdates);
+      
       res.status(200).json({ result });
   } catch (error) {
       console.error('Error processing the request:', error);
       res.status(500).json({ error: 'Internal Server Error' });
-  }
+  } //return output
 });
 
 // app.listen(PORT, () => {
