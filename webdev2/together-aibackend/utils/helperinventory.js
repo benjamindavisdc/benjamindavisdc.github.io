@@ -117,11 +117,11 @@ Don't let the player use items they don't have in their inventory.`;
 async function mainLoop(message, history) {
     const gameState = getGameState({
         inventory: {
-            "cloth pants": 1,
-            "cloth shirt": 1,
-            "goggles": 1,
+            "Sword of Just Ice": 1,
+            "Tabard of a Cat in a Tree": 1,
+            "Rolls of gauze": 12,
             "leather bound journal": 1,
-            "gold": 5
+            "gold": 45000
         }
     });
 
