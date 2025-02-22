@@ -54,11 +54,11 @@ async function setupGameState() {
             town: town.description,
             character: character.description,
             inventory: {
-                "Sword of Just Ice": 1,
-                "Tabard of a Cat in a Tree": 1,
+                "cloth pants": 1,
+                "cloth shirt": 1,
                 "goggles": 1,
                 "leather bound journal": 1,
-                "gold": 45000
+                "gold": 5
             },
             start: "", // Start will be populated dynamically
         };
