@@ -38,10 +38,9 @@ async function detectInventoryChanges(gameState, output) {
         { role: "user", content: "Inventory Updates" }
     ];
 
-    const chatCompletion = await client.chat.completions.create({
-        model: "meta-llama/Llama-3-70b-chat-hf",
-        temperature: 0.0,
-        messages
+    const chatCompletion = await togetherClient.chat.completions.create({
+        model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+        messages: messages,
     });
 
     const response = JSON.parse(chatCompletion.choices[0].message.content);
