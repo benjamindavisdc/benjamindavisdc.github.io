@@ -40,14 +40,17 @@ export let gameState = {
     worldInfo: null,
   };
 
-async function setupGameState() {
+  async function setupGameState() {
     try {
+        // Load the world data
         const world = await load_remote_world('https://raw.githubusercontent.com/benjamindavisdc/benjamindavisdc.github.io/refs/heads/main/webdev2/together-aibackend/public/Saves/Willowbrook2.json');
+        
+        // Extract relevant data for kingdom, town, and character
         const kingdom = world['kingdoms']['Sunshine Kingdom'];
         const town = kingdom['towns']['Mistwood'];
         const character = town['npcs']['Sir Bumble'];
 
-        // Setup game state after all the data is loaded
+        // Construct the game state
         gameState = {
             world: world.description,
             kingdom: kingdom.description,
@@ -63,22 +66,24 @@ async function setupGameState() {
             start: "", // Start will be populated dynamically
         };
 
+        // Set worldInfo after the game state is fully constructed
         gameState.worldInfo = `
-        World: ${gameState.world}
-        Kingdom: ${gameState.kingdom}
-        Town: ${gameState.town}
-        Your Character: ${gameState.character}
-        Your Inventory: ${JSON.stringify(gameState.inventory, null, 2)}`;
-        
+            World: ${gameState.world}
+            Kingdom: ${gameState.kingdom}
+            Town: ${gameState.town}
+            Your Character: ${gameState.character}
+            Your Inventory: ${JSON.stringify(gameState.inventory, null, 2)}`;
+
+        // Log the gameState after it's fully updated
+        console.log(gameState);
 
         return gameState;
 
-        
     } catch (error) {
         console.error('Error setting up game state:', error);
     }
-    console.log(gameState); // or whatever you want to do with gameState
 }
+
 
 // Export functions for use in other modules
 export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState }; //gamestate is exported earlier on
