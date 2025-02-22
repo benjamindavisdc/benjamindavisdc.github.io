@@ -71,4 +71,4 @@ async function setupGameState() {
 }
 
 // Export functions for use in other modules
-export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState };
+export { loadEnv, save_world, load_world, load_remote_world, getTogetherApiKey, setupGameState }; //gamestate is exported earlier on

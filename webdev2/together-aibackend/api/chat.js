@@ -50,7 +50,13 @@ const togetherClient = new Together({ apiKey });
 
 
 
-const systemPrompt = `You are an AI Game master. Your job is to create a 
+
+
+
+
+async function generateStart() {
+
+  const systemPrompt = `You are an AI Game master. Your job is to create a 
 start to an adventure based on the world, kingdom, town and character 
 a player is playing as. 
 Instructions:
@@ -60,9 +66,6 @@ Write in present tense. For example "You stand at..."
 First describe the character and their backstory. 
 Then describe where they start and what they see around them.`;
 
-
-
-async function generateStart() {
     try {
 
       // const worldInfo = `
