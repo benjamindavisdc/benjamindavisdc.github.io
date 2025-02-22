@@ -1,5 +1,5 @@
 
-
+export {detectInventoryChanges, updateInventory}
 
 async function detectInventoryChanges(gameState, output) {
 
@@ -29,7 +29,7 @@ async function detectInventoryChanges(gameState, output) {
         ]\
     }`;
 
-    
+
     const inventory = gameState.inventory;
     const messages = [
         { role: "system", content: systemPrompt },
