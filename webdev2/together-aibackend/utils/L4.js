@@ -1,3 +1,6 @@
+const { Together } = require('together');
+const { getTogetherApiKey, getGameState, isSafe, startGame } = require('./helper');
+
 const systemPrompt = `You are an AI Game Assistant. \
 Your job is to detect changes to a player's \
 inventory based on the most recent story and game state.\
@@ -24,6 +27,7 @@ Inventory Updates:\
     ]\
 }`;
 
+const client = new Together({ apiKey: getTogetherApiKey() });
 
 async function detectInventoryChanges(gameState, output) {
     const inventory = gameState.inventory;
@@ -44,9 +48,6 @@ async function detectInventoryChanges(gameState, output) {
     return response.itemUpdates;
 }
 
-
-
-
 async function updateInventory(inventory, itemUpdates) {
     let updateMsg = '';
     
@@ -64,8 +65,6 @@ async function updateInventory(inventory, itemUpdates) {
     }
     return updateMsg;
 }
-
-
 
 async function runAction(message, history, gameState) {
     if (message === 'start game') return gameState.start;
@@ -100,7 +99,6 @@ Don't let the player use items they don't have in their inventory.`;
     return modelOutput.choices[0].message.content;
 }
 
-
 async function mainLoop(message, history) {
     const gameState = getGameState({
         inventory: {
@@ -121,4 +119,4 @@ async function mainLoop(message, history) {
     return output;
 }
 
-// startGame(mainLoop, true);
+startGame(mainLoop, true);

@@ -53,6 +53,13 @@ async function setupGameState() {
             kingdom: kingdom.description,
             town: town.description,
             character: character.description,
+            inventory: {
+                "cloth pants": 1,
+                "cloth shirt": 1,
+                "goggles": 1,
+                "leather bound journal": 1,
+                "gold": 5
+            },
             start: "", // Start will be populated dynamically
         };
 
@@ -60,14 +67,17 @@ async function setupGameState() {
         World: ${gameState.world}
         Kingdom: ${gameState.kingdom}
         Town: ${gameState.town}
-        Your Character: ${gameState.character}`;
+        Your Character: ${gameState.character}
+        Your Inventory: ${gameState.inventory}`;
+        
 
         return gameState;
 
-        //console.log(gameState); // or whatever you want to do with gameState
+        
     } catch (error) {
         console.error('Error setting up game state:', error);
     }
+    console.log(gameState); // or whatever you want to do with gameState
 }
 
 // Export functions for use in other modules
