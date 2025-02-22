@@ -56,7 +56,7 @@ async function setupGameState() {
             inventory: {
                 "Sword of Just Ice": 1,
                 "Tabard of a Cat in a Tree": 1,
-                "Rolls of gauze": 12,
+                "goggles": 1,
                 "leather bound journal": 1,
                 "gold": 45000
             },
