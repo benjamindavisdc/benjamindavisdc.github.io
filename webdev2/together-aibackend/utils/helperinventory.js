@@ -70,6 +70,11 @@ async function detectInventoryChanges(gameState, output) {
 
 async function updateInventory(inventory, itemUpdates) {
     let updateMsg = '';
+
+    if (!Array.isArray(gameState.inventory)) {
+        console.warn("Warning: Inventory is not an array, resetting to empty array.");
+        gameState.inventory = [];
+    }
     
     for (const update of itemUpdates) {
         const { name, change_amount } = update;
