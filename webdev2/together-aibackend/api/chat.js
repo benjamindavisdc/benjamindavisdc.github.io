@@ -178,7 +178,7 @@ app.post("/api/chat/start", async (req, res) => {
 
 // Second POST handler - runs an action in the game
 app.post("/api/chat/action", async (req, res) => {
-  console.log("GameState before:", worldState);
+  console.log("GameState before:", gameState);
   try {
       const { message, history } = req.body;
 
@@ -196,7 +196,7 @@ app.post("/api/chat/action", async (req, res) => {
       const finalResult = inventoryUpdateMsg ? `${result}\n${inventoryUpdateMsg}` : result;
       
       res.status(200).json({ result: finalResult });
-      console.log("GameState after:", response.worldState);
+      console.log("GameState after:", response.gameState);
   } catch (error) {
       console.error('Error processing the request:', error);
       res.status(500).json({ error: 'Internal Server Error' });
