@@ -182,40 +182,27 @@ app.post("/api/chat/action", async (req, res) => {
   try {
       const { message, history } = req.body;
 
-      if (!message) return res.status(400).json({ error: "Missing message" });
-      if (!Array.isArray(history)) return res.status(400).json({ error: "History must be an array" });
+      if (!message) {
+        return res.status(400).json({ error: "Missing message in request body" });
+    }
+    if (!Array.isArray(history)) {
+        return res.status(400).json({ error: "History must be an array" });
+    }
 
-      // Run the game action (narration)
-      const narration = await runAction(message, history, gameState);
+      const result = await runAction(message, history, gameState);
+      const itemUpdates = await detectInventoryChanges(gameState, result);
 
-      // ✅ Return narration FIRST so the user sees results instantly
-      res.status(200).json({ result: narration });
-
-      // ✅ Process inventory updates in the background
-      setImmediate(async () => {
-          try {
-              const itemUpdates = await detectInventoryChanges(gameState, narration);
-              const inventoryUpdateMsg = await updateInventory(gameState.inventory, itemUpdates);
-
-              if (inventoryUpdateMsg) {
-                  console.log("Inventory Update:", inventoryUpdateMsg);
-
-                  // Send inventory update separately (WebSockets or polling preferred)
-                  gameState.pendingMessages.push({ type: "inventory", content: inventoryUpdateMsg });
-              }
-          } catch (err) {
-              console.error("Inventory update failed:", err);
-          }
-      });
-
+      const inventoryUpdateMsg = await updateInventory(gameState.inventory, itemUpdates);
+      const finalResult = inventoryUpdateMsg ? `${result}\n${inventoryUpdateMsg}` : result;
+      
       console.log("GameState after:", gameState);
+      res.status(200).json({ result: finalResult });
 
   } catch (error) {
-      console.error("Error processing the request:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-  }
+      console.error('Error processing the request:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  } //return output
 });
-
 
 // app.listen(PORT, () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
