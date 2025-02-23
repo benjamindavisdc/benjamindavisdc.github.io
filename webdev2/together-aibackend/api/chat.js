@@ -101,7 +101,7 @@ Then describe where they start and what they see around them.`;
 
 
 
-async function runAction(message, history, gameState) {
+async function runAction(message, history) {
   
     const systemPrompt = `You are an AI Game master. Your job is to write what 
     happens next in a player's adventure game.
@@ -134,7 +134,7 @@ async function runAction(message, history, gameState) {
   } else {
       console.warn("Warning: history is not an array:", history);
   }
-  
+
   
     messages.push({ role: "user", content: message });
   

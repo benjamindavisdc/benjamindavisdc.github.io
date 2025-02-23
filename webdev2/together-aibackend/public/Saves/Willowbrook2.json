@@ -18,7 +18,8 @@
               "description": "Sir Bumble is a well-meaning but accident-prone knight who lives in Willowbrook. He wears a suit of armor that is dented and scratched from his many mishaps, and has a kind face with a perpetual look of apology. Despite his clumsiness, he is determined to help those in need and is loved by the townsfolk for his good heart. Deep down, Sir Bumble longs to be a true hero, but his fear of failure holds him back.",
               "world": "Willowbrook",
               "kingdom": "Sunshine Kingdom",
-              "town": "Mistwood"
+              "town": "Mistwood",
+              "inventory": "{ \"Sword of Just Ice\": 1, \"Tabard of a Cat in a Tree\": 1, \"goggles\": 1, \"leather bound journal\": 1, \"gold\": 45000 }"
             },
             "Elara Moonwhisper": {
               "name": "Elara Moonwhisper",

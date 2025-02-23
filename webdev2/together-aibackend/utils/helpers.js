@@ -56,23 +56,17 @@ export let gameState = {
             kingdom: kingdom.description,
             town: town.description,
             character: character.description,
-            inventory: {
-                "Sword of Just Ice": 1,
-                "Tabard of a Cat in a Tree": 1,
-                "goggles": 1,
-                "leather bound journal": 1,
-                "gold": 45000
-            },
+            inventory: character.inventory,
             start: "", // Start will be populated dynamically
         };
 
-        // Set worldInfo after the game state is fully constructed
+        // Set world Info after the game state is fully constructed
         gameState.worldInfo = `
             World: ${gameState.world}
             Kingdom: ${gameState.kingdom}
             Town: ${gameState.town}
             Your Character: ${gameState.character}
-            Your Inventory: ${JSON.stringify(gameState.inventory, null, 2)}`;
+            Your Inventory: ${gameState.inventory}`;
 
         // Log the gameState after it's fully updated
         console.log(gameState);
