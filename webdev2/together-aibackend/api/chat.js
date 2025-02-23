@@ -195,8 +195,9 @@ app.post("/api/chat/action", async (req, res) => {
       const inventoryUpdateMsg = await updateInventory(gameState.inventory, itemUpdates);
       const finalResult = inventoryUpdateMsg ? `${result}\n${inventoryUpdateMsg}` : result;
       
+      console.log("GameState after:", gameState);
       res.status(200).json({ result: finalResult });
-      console.log("GameState after:", response.gameState);
+
   } catch (error) {
       console.error('Error processing the request:', error);
       res.status(500).json({ error: 'Internal Server Error' });
