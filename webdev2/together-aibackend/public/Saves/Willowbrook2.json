@@ -19,7 +19,13 @@
               "world": "Willowbrook",
               "kingdom": "Sunshine Kingdom",
               "town": "Mistwood",
-              "inventory": "{ \"Sword of Just Ice\": 1, \"Tabard of a Cat in a Tree\": 1, \"goggles\": 1, \"leather bound journal\": 1, \"gold\": 45000 }"
+              "inventory": {
+                "Sword of Just Ice": 1,
+                "Tabard of a Cat in a Tree": 1,
+                "goggles": 1,
+                "leather bound journal": 1,
+                "gold": 45000
+            }
             },
             "Elara Moonwhisper": {
               "name": "Elara Moonwhisper",

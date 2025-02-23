@@ -66,7 +66,7 @@ export let gameState = {
             Kingdom: ${gameState.kingdom}
             Town: ${gameState.town}
             Your Character: ${gameState.character}
-            Your Inventory: ${gameState.inventory}`;
+            Your Inventory: ${JSON.stringify(gameState.inventory, null, 2)}`;
 
         // Log the gameState after it's fully updated
         console.log(gameState);
