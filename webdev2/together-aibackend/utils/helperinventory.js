@@ -53,7 +53,15 @@ async function detectInventoryChanges(gameState, output) {
         messages: messages,
     });
 
-    const response = JSON.parse(chatCompletion.choices[0].message.content);
+    let responseText = chatCompletion.choices[0]?.message?.content || "{}"; // Prevent null content
+    let response;
+    try {
+        response = JSON.parse(responseText);
+    } catch (error) {
+        console.error("Failed to parse LLM response as JSON:", responseText, error);
+        response = { itemUpdates: [] }; // Fallback to empty response
+    }
+    
     return response.itemUpdates;
 }
 
